@@ -9,6 +9,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="register.js"></script>
     <style>
 	:root {
   --input-padding-x: 1.5rem;
@@ -167,13 +168,14 @@ body {
               </div>
               
               <div class="form-label-group">
-                <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
+                <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Confirm Password" required>
                 <label for="inputConfirmPassword">Confirm password</label>
               </div>
 
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+              <button type="submit" class="btn btn-lg btn-primary btn-block text-uppercase" onclick="checkpsw()">Register</button>
               <a class="d-block text-center mt-2 small" href="sign_in.html">Sign In</a>
             </form>
+
           </div>
         </div>
       </div>
