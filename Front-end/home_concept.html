@@ -9,6 +9,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="home.js"></script>
     <style>
 	
 	
@@ -242,7 +243,7 @@
 		  <tbody>
 			<tr>
 			  <td>
-				<div id="list1" class="dropdown-check-list" tabindex="100">
+				<div id="list1" class="dropdown-check-list" onclick="displaylist('list1', 'fruits')" tabindex="100">
 					<span class="anchor">Select Fruits</span>
 					<ul id="fruits" class="items">
 						<li><input type="checkbox" />Apple </li>
@@ -255,30 +256,9 @@
 					</ul>
 				</div>
 
-				<script type="text/javascript">
-					var checkList = document.getElementById('list1');
-					var items = document.getElementById('fruits');
-					checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
-						if (items.classList.contains('visible')){
-							items.classList.remove('visible');
-							items.style.display = "none";
-						}
-            
-						else{
-							items.classList.add('visible');
-							items.style.display = "block";
-						}
-            
-            
-					}
-
-					items.onblur = function(evt) {
-					items.classList.remove('visible');
-					}
-				</script>
 			  </td>
 			  <td>
-				<div id="list2" class="dropdown-check-list" tabindex="100">
+				<div id="list2" class="dropdown-check-list" onclick="displaylist('list2', 'veggies')" tabindex="100">
 					<span class="anchor">Select Vegetables</span>
 					<ul id="veggies" class="items">
 						<li><input type="checkbox" />Broccoli </li>
@@ -291,32 +271,10 @@
 					</ul>
 				</div>
 				
-				<script type="text/javascript">
-					var checkList2 = document.getElementById('list2');
-					var items2 = document.getElementById('veggies');
-					checkList2.getElementsByClassName('anchor')[0].onclick = function (evt) {
-						if (items2.classList.contains('visible')){
-							items2.classList.remove('visible');
-							items2.style.display = "none";
-						}
-            
-						else{
-							items2.classList.add('visible');
-							items2.style.display = "block";
-						}
-            
-            
-					}
-
-					items2.onblur = function(evt) {
-					items2.classList.remove('visible');
-					}
-				</script>
-				
 			  </td>
 			  
 			  <td>
-				<div id="list3" class="dropdown-check-list" tabindex="100">
+				<div id="list3" class="dropdown-check-list" onclick="displaylist('list3', 'grains')" tabindex="100">
 					<span class="anchor">Select Grains</span>
 					<ul id="grains" class="items">
 						<li><input type="checkbox" />Rice </li>
@@ -329,30 +287,9 @@
 					</ul>
 				</div>
 				
-				<script type="text/javascript">
-					var checkList3 = document.getElementById('list3');
-					var items3 = document.getElementById('grains');
-					checkList3.getElementsByClassName('anchor')[0].onclick = function (evt) {
-						if (items3.classList.contains('visible')){
-							items3.classList.remove('visible');
-							items3.style.display = "none";
-						}
-            
-						else{
-							items3.classList.add('visible');
-							items3.style.display = "block";
-						}
-            
-            
-					}
-
-					items3.onblur = function(evt) {
-					items3.classList.remove('visible');
-					}
-				</script>
 			  </td>
 			  <td>
-				<div id="list4" class="dropdown-check-list" tabindex="100">
+				<div id="list4" class="dropdown-check-list" onclick="displaylist('list4', 'meats')" tabindex="100">
 					<span class="anchor">Select Meats</span>
 					<ul id="meats" class="items">
 						<li><input type="checkbox" />Chicken</li>
@@ -364,31 +301,10 @@
 						<li><input type="checkbox" />Lamb</li>
 					</ul>
 				</div>
-				
-				<script type="text/javascript">
-					var checkList4 = document.getElementById('list4');
-					var items4 = document.getElementById('meats');
-					checkList4.getElementsByClassName('anchor')[0].onclick = function (evt) {
-						if (items4.classList.contains('visible')){
-							items4.classList.remove('visible');
-							items4.style.display = "none";
-						}
-            
-						else{
-							items4.classList.add('visible');
-							items4.style.display = "block";
-						}
-            
-            
-					}
-
-					items4.onblur = function(evt) {
-					items4.classList.remove('visible');
-					}
-				</script>
+		
 			  </td>
 			  <td>
-				<div id="list5" class="dropdown-check-list" tabindex="100">
+				<div id="list5" class="dropdown-check-list" onclick="displaylist('list5', 'dairy')" tabindex="100">
 					<span class="anchor">Select Dairy</span>
 					<ul id="dairy" class="items">
 						<li><input type="checkbox" />Milk</li>
@@ -401,30 +317,9 @@
 					</ul>
 				</div>
 				
-				<script type="text/javascript">
-					var checkList5 = document.getElementById('list5');
-					var items5 = document.getElementById('dairy');
-					checkList5.getElementsByClassName('anchor')[0].onclick = function (evt) {
-						if (items5.classList.contains('visible')){
-							items5.classList.remove('visible');
-							items5.style.display = "none";
-						}
-            
-						else{
-							items5.classList.add('visible');
-							items5.style.display = "block";
-						}
-            
-            
-					}
-
-					items5.onblur = function(evt) {
-					items5.classList.remove('visible');
-					}
-				</script>
 			  </td>
 			  <td>
-				<div id="list6" class="dropdown-check-list" tabindex="100">
+				<div id="list6" class="dropdown-check-list" onclick="displaylist('list6', 'other')" tabindex="100">
 					<span class="anchor" >Select Other</span>
 					<ul id="other" class="items">
 						<li><input type="checkbox" />Eggs</li>
@@ -437,27 +332,6 @@
 					</ul>
 				</div>
 				
-				<script type="text/javascript">
-					var checkList6 = document.getElementById('list6');
-					var items6 = document.getElementById('other');
-					checkList6.getElementsByClassName('anchor')[0].onclick = function (evt) {
-						if (items6.classList.contains('visible')){
-							items6.classList.remove('visible');
-							items6.style.display = "none";
-						}
-            
-						else{
-							items6.classList.add('visible');
-							items6.style.display = "block";
-						}
-            
-            
-					}
-
-					items6.onblur = function(evt) {
-					items6.classList.remove('visible');
-					}
-				</script>
 			  </td>
 			</tr>
 		  </tbody>
@@ -470,6 +344,5 @@
 		<br>
 	</div>
 
-	
 	
 </body>
