@@ -10,7 +10,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     if(user != null){
 
       var email_id = user.email;
-      //document.getElementById("user_para").innerHTML = "Welcome User : " + email_id;
+      document.getElementById("user_para").innerHTML = "Welcome " + email_id;
 
     }
 
@@ -28,7 +28,10 @@ function login(){
   var userEmail = document.getElementById("inputEmail").value;
   var userPass = document.getElementById("inputPassword").value;
 
-  firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+  firebase.auth().signInWithEmailAndPassword(userEmail, userPass).then(function() {
+	  location.replace("home_concept.html");
+	})
+	.catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;

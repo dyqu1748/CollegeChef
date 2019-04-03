@@ -10,6 +10,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="home.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+  <script>
+		  // Initialize Firebase
+		  var config = {
+			apiKey: "AIzaSyBprXkeXD1HCJQZL4KtgmMaA3svUU7vcgI",
+			authDomain: "collegechef-1789f.firebaseapp.com",
+			databaseURL: "https://collegechef-1789f.firebaseio.com",
+			projectId: "collegechef-1789f",
+			storageBucket: "collegechef-1789f.appspot.com",
+			messagingSenderId: "231942064234"
+			};
+		firebase.initializeApp(config);
+  </script>
+	
+  <script src="accounts.js"></script>
     <style>
 	
 	
@@ -23,20 +38,17 @@
   border: 1px solid black;
   background-image: none;
 }
-
 .carousel-control-next-icon:after
 {
   content: '>';
   font-size: 55px;
   color: red;
 }
-
 .carousel-control-prev-icon:after {
   content: '<';
   font-size: 55px;
   color: red;
 }
-
 .dropdown-check-list {
   display: inline-block;
 }
@@ -75,7 +87,6 @@
 .dropdown-check-list ul.items li {
   list-style: none;
 }
-
   </style>
 </head>
 <body>
@@ -102,24 +113,30 @@
 					<img src="push.gif" class="rounded-circle" alt="placeholder profile pic" width="50" height="50">
 				</a>
 				<div class="dropdown-menu" role="menu" aria-labelledby="profileDropdown">
-					<li class="text-center">Sign in</li>
-					<li>
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Username" id="usr">
-						</div>
-					</li>
-					<li>
-						<div class="form-group">
-							<input type="password" class="form-control" placeholder="Password" id="pwd">
-						</div>
-					</li>
-					<li class="text-center">
-						<a href="#" class="btn btn-success" role="button">Submit</a> 
-					</li>
-					<div class="dropdown-divider"></div>
-						<li class="text-center">
-							<a href="register.html" class="btn btn-info" role="button">Sign Up</a>
+					<div id="login_div">
+						<li class="text-center">Sign in</li>
+						<li>
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Email" id="inputEmail">
+							</div>
 						</li>
+						<li>
+							<div class="form-group">
+								<input type="password" class="form-control" placeholder="Password" id="inputPassword">
+							</div>
+						</li>
+						<li class="text-center">
+							<button class="btn btn-primary btn-block" onclick="login()">Submit</button> 
+						</li>
+						<div class="dropdown-divider"></div>
+							<li class="text-center">
+								<a href="register.html" class="btn btn-info" role="button">Sign Up</a>
+							</li>
+					</div>
+					<div id="user_div">
+						<p id="user_para">Hello User!</p>
+						<button class="btn btn-primary btn-block" onclick="logout()">Log Out</button>
+					</div>
 				</div>
 			</div>	
 			<a href="#">
@@ -133,44 +150,7 @@
 		</div>	
 	</nav>
 	<br>
-
-	<!---
-	<div class="container rounded bg-light">
-		<div class="text-center">
-			<h3>Most Popular</h3>
-			<br>
-			<div class="row">
-				<div class="col-sm-3">
-					<a href="#">
-						<img src="https://s3-media4.fl.yelpcdn.com/bphoto/6_LHGb5hItqjGOIV4cyryA/o.jpg" class="rounded" height="200" width="250">
-						<p>Breakfast Burrito</p>
-					</a>
-				</div>
-				<div class="col-sm-3">
-					<a href="#">
-						<img src="https://collegian.com/wp-content/uploads/2016/11/mod-pizza.jpg" class="rounded" height="200" width="250">
-						<p>Thin-Crust Pizza</p>
-					</a>
-				</div>
-				<div class="col-sm-3">
-					<a href="#">
-						<img src="https://www.totalhappyhour.com/preview/500-450/content/files/mod.happyhour/439fc278ee514ffb8d15a52e113a8e76.jpg" class="rounded" height="200" width="250">
-						<p>Hamburger</p>
-					</a>
-				</div>
-				<div class="col-sm-3">
-					<a href="#">
-						<img src="http://seonkyounglongest.com/wp-content/uploads/2017/06/chicken-fried-rice-02.jpg" class="rounded" height="200" width="250">
-						<p>Fried Rice</p>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<br>
-	</br>
-	-->
-
+	
 	<div class="container-fluid text-center"> 
 		<h3>Most Popular</h3>
 		<br>
@@ -215,7 +195,6 @@
 					</a>
 				</div>
 			</div>
-
 			<a class="carousel-control-prev" href="#popular" data-slide="prev">
 				<span class="carousel-control-prev-icon""></span>
 			</a>
@@ -255,7 +234,6 @@
 						<li><input type="checkbox" />Tomato</li>
 					</ul>
 				</div>
-
 			  </td>
 			  <td>
 				<div id="list2" class="dropdown-check-list" onclick="displaylist('list2', 'veggies')" tabindex="100">
@@ -343,6 +321,5 @@
 		</div>
 		<br>
 	</div>
-
 	
 </body>
