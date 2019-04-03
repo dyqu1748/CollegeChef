@@ -9,7 +9,23 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="register.js"></script>
+  <script src="register.js"></script>
+			  
+		<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+	<script>
+		  // Initialize Firebase
+		  var config = {
+			apiKey: "AIzaSyBprXkeXD1HCJQZL4KtgmMaA3svUU7vcgI",
+			authDomain: "collegechef-1789f.firebaseapp.com",
+			databaseURL: "https://collegechef-1789f.firebaseio.com",
+			projectId: "collegechef-1789f",
+			storageBucket: "collegechef-1789f.appspot.com",
+			messagingSenderId: "231942064234"
+			};
+		firebase.initializeApp(config);
+	</script>
+	
+	<script src="accounts.js"></script>
     <style>
 	:root {
   --input-padding-x: 1.5rem;
@@ -152,7 +168,7 @@ body {
           </div>
           <div class="card-body">
             <h5 class="card-title text-center">Register</h5>
-            <form class="form-signin">
+            <div id="login_div">
               
 
               <div class="form-label-group">
@@ -172,10 +188,16 @@ body {
                 <label for="inputConfirmPassword">Confirm password</label>
               </div>
 
-              <button type="submit" class="btn btn-lg btn-primary btn-block text-uppercase" onclick="checkpsw()">Register</button>
+              <button class="btn btn-lg btn-primary btn-block" style="rounded" onclick="newaccount()">Register</button>
               <a class="d-block text-center mt-2 small" href="sign_in.html">Sign In</a>
-            </form>
-
+		
+			</div>
+		
+			<div id="user_div" class="loggedin-div">
+				<h3>Welcome User</h3>
+				<p id="user_para">Welcome to CollegeChef. Please check your inbox and verify your account.</p>
+			</div>
+		
           </div>
         </div>
       </div>
