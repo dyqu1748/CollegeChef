@@ -11,6 +11,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script language="javascript"></script>
+  
     
 
 
@@ -28,13 +29,20 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="ModalLabel"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <div  id="recipeIngredients"></div>
+                <div  id="recipeSteps"></div>
+                <div  id="recipeTime"></div>
+                <div  id="dietaryRestrictions"></div>
+                
+                <!-- <div id="otherThings"></div> -->
+                
+                <!-- <input type="text" id="candidate"/> -->
             </div>
             <div class="modal-footer">
                 <p id="zaiddemodisplay"></p>
@@ -46,11 +54,53 @@
 
 
     <script>
+    function restrictions(temp)
+    {
+
+        if(temp.vegetarian == true)
+        {
+            document.getElementById('dietaryRestrictions').innerHTML += '<p> Vegitarian: Yes';
+    
+        }
+        else if(temp.vegetarian == false)
+        {
+            document.getElementById('dietaryRestrictions').innerHTML += '<p> Vegitarian: No';
+        }
+        if(temp.vegan == true)
+        {
+            document.getElementById('dietaryRestrictions').innerHTML += '<br> Vegan: Yes';
+        }
+        else if(temp.vegan == false)
+        {
+            document.getElementById('dietaryRestrictions').innerHTML += '<br> Vegan: No';
+        }
+        if(temp.glutenFree == true)
+        {
+            document.getElementById('dietaryRestrictions').innerHTML += '<br> Gluten Free: Yes<p>';
+        }
+        else if(temp.glutenFree == false)
+        {
+            document.getElementById('dietaryRestrictions').innerHTML += '<br> Gluten Free: No<p>';
+        }
+    }
+    
+    function recipeList(element)
+    {
+        var list = document.getElementById("recipeIngredients");
+        // console.log("HERERERE1"); 
+        for(var i = 0; i < element.extendedIngredients.length; i++)
+            {
+                // var li = document.createElement("li");
+                // li = element.extendedIngredients[i].name;
+                // console.log("HERERERE");    
+                // console.log("INGREDIENTS: ", element.extendedIngredients[i].name, ", i: ", i);
+            }
+    }
     function displayMoreInfo(element) 
     {
         var xhttp = new XMLHttpRequest();
-        console.log('function called')
-        console.log(element.id);
+        //console.log('function called')
+        //console.log(element.id);
         var id= element.id;
         url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+ id+ "/information"
         // console.log(`url is: ${url}`);
@@ -62,10 +112,15 @@
         // do the http call.
         xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.response)
+            //console.log(this.response)
             var json = JSON.parse(this.response);            
-            console.log(json);
-            document.getElementById('zaiddemodisplay').innerHTML = json.vegetarian;
+            //console.log(json);
+            // document.getElementById('zaiddemodisplay').innerHTML = json.vegetarian;
+            document.getElementById('ModalLabel').innerHTML += json.title;
+            document.getElementById('recipeSteps').innerHTML += '<p>'+ json.instructions +'</p>';
+            document.getElementById('recipeTime').innerHTML += '<p>Meal Ready In: '+ json.readyInMinutes +' minutes.</p>';
+            restrictions(json);
+            recipeList(json);
                         
         }
         else {
