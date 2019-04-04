@@ -11,6 +11,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 
       var email_id = user.email;
       document.getElementById("user_para").innerHTML = "Welcome " + email_id;
+	  document.getElementById("home_para").innerHTML = "Welcome back to CollegeChef™. Click the button below to start cooking.";
+	  document.getElementById("home_btn").innerHTML = "Get Cooking";
+	  document.getElementById("home_btn").href = "#section-a";
+	  document.getElementById("home_head").innerHTML = "Welcome Back";
 
     }
 
@@ -19,6 +23,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     document.getElementById("user_div").style.display = "none";
     document.getElementById("login_div").style.display = "block";
+	document.getElementById("section-a").style.display = "none";
 
   }
 });
@@ -29,7 +34,7 @@ function login(){
   var userPass = document.getElementById("inputPassword").value;
 
   firebase.auth().signInWithEmailAndPassword(userEmail, userPass).then(function() {
-	  location.replace("home_concept.html");
+	  location.replace("home.html");
 	})
 	.catch(function(error) {
     // Handle Errors here.
@@ -62,8 +67,20 @@ function create_account(){
 });
 }
 
+function redirect()
+{
+	var user = firebase.auth().currentUser;
+
+    if(user != null){
+
+      location.replace("home.html");
+
+    }
+}
+
 function logout(){
   firebase.auth().signOut();
+  location.reload();
 }
 
 function verify_email(){

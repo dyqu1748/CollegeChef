@@ -6,24 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
-  <script>
-		  // Initialize Firebase
-		  var config = {
-			apiKey: "AIzaSyBprXkeXD1HCJQZL4KtgmMaA3svUU7vcgI",
-			authDomain: "collegechef-1789f.firebaseapp.com",
-			databaseURL: "https://collegechef-1789f.firebaseio.com",
-			projectId: "collegechef-1789f",
-			storageBucket: "collegechef-1789f.appspot.com",
-			messagingSenderId: "231942064234"
-			};
-		firebase.initializeApp(config);
-  </script>
-	
-  <script src="accounts.js"></script>
     <style>
 	:root {
   --input-padding-x: 1.5rem;
@@ -31,7 +13,6 @@
 }
 
 body {
-  background: #007bff;
   background: linear-gradient(to right, #FFDDAD, #FFF1DD);
 }
 
@@ -136,7 +117,7 @@ body {
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="home_concept.html">
+		<a class="navbar-brand" href="home.html">
 			<img src="chef.jpg" alt="placeholder logo" width="40" height="40">
 			CollegeChef™
 		</a>
@@ -147,7 +128,7 @@ body {
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="home_concept.html">Home <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Recipes</a>
@@ -182,9 +163,39 @@ body {
 			  <a class="d-block text-center mt-2 small" href="register.html">Register Here</a>
             </div>
 			
+			<div id="user_div">
+			<p>You will be redirected to the home page momentarily. Please wait.</p>
+			<script>
+				redirect();
+			</script>
+				
+			</div>
+			
           </div>
         </div>
       </div>
     </div>
   </div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+  <script>
+		  // Initialize Firebase
+		  var config = {
+			apiKey: "AIzaSyBprXkeXD1HCJQZL4KtgmMaA3svUU7vcgI",
+			authDomain: "collegechef-1789f.firebaseapp.com",
+			databaseURL: "https://collegechef-1789f.firebaseio.com",
+			projectId: "collegechef-1789f",
+			storageBucket: "collegechef-1789f.appspot.com",
+			messagingSenderId: "231942064234"
+			};
+		firebase.initializeApp(config);
+  </script>
+	
+  <script src="accounts.js"></script>
+  
 </body>
+
+</html>
