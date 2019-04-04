@@ -35,10 +35,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div  id="recipeIngredients"></div>
+                <!-- <div  id="recipeIngredients"></div> -->
                 <div  id="recipeSteps"></div>
                 <div  id="recipeTime"></div>
-                <div  id="dietaryRestrictions"></div>
+                <div  id="dietaryRestrictions">
+                    <p id="vegitarian"></p>
+                    <p id="gluten"></p>
+                    <p id="vegan"></p>
+                </div>
+                <ul id="ingredientsList"></ul>
                 
                 <!-- <div id="otherThings"></div> -->
                 
@@ -56,42 +61,46 @@
     <script>
     function restrictions(temp)
     {
+        document.getElementById('vegitarian').innerHTML = "";
+        document.getElementById('vegan').innerHTML = "";
+        document.getElementById('gluten').innerHTML = "";
 
         if(temp.vegetarian == true)
         {
-            document.getElementById('dietaryRestrictions').innerHTML += '<p> Vegitarian: Yes';
+            document.getElementById('vegitarian').innerHTML += '<p> Vegitarian: Yes</p>';
     
         }
         else if(temp.vegetarian == false)
         {
-            document.getElementById('dietaryRestrictions').innerHTML += '<p> Vegitarian: No';
+            document.getElementById('vegitarian').innerHTML += '<p> Vegitarian: No</p>';
         }
         if(temp.vegan == true)
         {
-            document.getElementById('dietaryRestrictions').innerHTML += '<br> Vegan: Yes';
+            document.getElementById('vegan').innerHTML += '<p> Vegan: Yes</p>';
         }
         else if(temp.vegan == false)
         {
-            document.getElementById('dietaryRestrictions').innerHTML += '<br> Vegan: No';
+            document.getElementById('vegan').innerHTML += '<p> Vegan: No</p>';
         }
         if(temp.glutenFree == true)
         {
-            document.getElementById('dietaryRestrictions').innerHTML += '<br> Gluten Free: Yes<p>';
+            document.getElementById('gluten').innerHTML += '<p> Gluten Free: Yes</p>';
         }
         else if(temp.glutenFree == false)
         {
-            document.getElementById('dietaryRestrictions').innerHTML += '<br> Gluten Free: No<p>';
+            document.getElementById('gluten').innerHTML += '<p> Gluten Free: No</p>';
         }
     }
     
     function recipeList(element)
     {
-        var list = document.getElementById("recipeIngredients");
+
+        var list = document.getElementById("ingredientsList");
+        list.innerHTML = "";
         // console.log("HERERERE1"); 
         for(var i = 0; i < element.extendedIngredients.length; i++)
             {
-                // var li = document.createElement("li");
-                // li = element.extendedIngredients[i].name;
+                list.innerHTML += '<li>'+ element.extendedIngredients[i].name +'</li>'
                 // console.log("HERERERE");    
                 // console.log("INGREDIENTS: ", element.extendedIngredients[i].name, ", i: ", i);
             }
@@ -116,9 +125,9 @@
             var json = JSON.parse(this.response);            
             //console.log(json);
             // document.getElementById('zaiddemodisplay').innerHTML = json.vegetarian;
-            document.getElementById('ModalLabel').innerHTML += json.title;
-            document.getElementById('recipeSteps').innerHTML += '<p>'+ json.instructions +'</p>';
-            document.getElementById('recipeTime').innerHTML += '<p>Meal Ready In: '+ json.readyInMinutes +' minutes.</p>';
+            document.getElementById('ModalLabel').innerHTML = json.title;
+            document.getElementById('recipeSteps').innerHTML = '<p>'+ json.instructions +'</p>';
+            document.getElementById('recipeTime').innerHTML = '<p>Meal Ready In: '+ json.readyInMinutes +' minutes.</p>';
             restrictions(json);
             recipeList(json);
                         
