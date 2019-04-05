@@ -462,7 +462,6 @@ body{
     function loadDoc() 
     {
         var xhttp = new XMLHttpRequest();
-
         var all_ingredients = document.getElementsByName('ingredients');
         var ingredients = "";
         for(var i = 0; i <all_ingredients.length; i++)
@@ -472,7 +471,6 @@ body{
             ingredients += all_ingredients[i].value + '%2C'
           }
         }
-
         //document.getElementById('ingredients');  // assume it returns this array ['sugar, 'spice', 'everything nice']
       //  ing_url = "";
         //ingredients.forEach(function(item)
@@ -491,22 +489,31 @@ body{
             {
             	var card = "";
                 response = JSON.parse(this.response);
+              card += '<div class="container-fluid">';
+              card +=  '<div class="row">';
+              card += '<div class="card-deck">';
                 for(var i = 0; i < response.length; i++)
                 {
                     //var card =  "";
-                    card += '<div class="card" style="width: 18rem;"><img class="card-img-top" src=' ;
-                    card +=  response[i]['image'];
-                    card +=  '><div class="card-body"><h5 class="card-title">'; 
+                    // card += '<div class="row">';
+                    // card += '<div class="col-sm-6">';
+                    
+                    card += '<div class="card">';
+                    card +=  '<img class="card-img-top" src='+ response[i]['image'] +'>';
+                    card +=  '<div class="card-body">';
+                    // card +=  '<img class="card-img-top src='+ response[i]['image'];
+                    card +=  '<h5 class="card-title">'; 
                     card +=  response[i]['title']; 
                     card +=  '</h5><p class="card-text">Used Ingredient Count: ';
                     card +=  response[i]['usedIngredientCount'];
                     card +=  '<br> Missed Ingredient Count: ';
                     card +=  response[i]['missedIngredientCount'];
                     card +=  '</p><btn id='+ response[i].id;
-                    card +=  ' href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="displayMoreInfo(this)">See More Information</btn</div></div>';  
-                   
+                    card +=  ' href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="displayMoreInfo(this)">See More Information</btn></div></div>';    
+                    // card += '</div></div>';
                     
                 }
+                card+='</div></div></div>';
              	document.getElementById("recipes-location").innerHTML = card;   
              	console.log(card);
             }
@@ -518,5 +525,3 @@ body{
     };
   </script>
 </body>
-
-</html>
