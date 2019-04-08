@@ -1,14 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<title>CollegeChef - Home</title>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="../resources/css/home.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+				<div class="modal-content">
+				<div class="modal-header">
+						<h5 class="modal-title" id="ModalLabel"></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+						<!-- <div  id="recipeIngredients"></div> -->
+						<div  id="recipeSteps"></div>
+						<div  id="recipeTime"></div>
+						<div  id="dietaryRestrictions">
+								<p id="vegitarian"></p>
+								<p id="gluten"></p>
+								<p id="vegan"></p>
+						</div>
+						<ul id="ingredientsList"></ul>
+						
+						<!-- <div id="otherThings"></div> -->
+						
+						<!-- <input type="text" id="candidate"/> -->
+				</div>
+				<div class="modal-footer">
+						<p id="zaiddemodisplay"></p>
+				</div>
+				</div>
+		</div>
+		</div>
+
 	<nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top">
 		<a class="navbar-brand" href="home.html">
 			<img src="../resources/img/chef.jpg" alt="placeholder logo" width="30" height="30">
@@ -31,7 +66,7 @@
 				<a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<img src="../resources/img/push.gif" class="rounded-circle" alt="placeholder profile pic" width="40" height="40">
 				</a>
-				<div class="dropdown-menu" role="menu" aria-labelledby="profileDropdown">
+				<div class="dropdown-menu" role="menu" aria-labelledby="profileDropdown" id="dropdownlogin">
 					<div id="login_div">
 						<li class="text-center">Sign in</li>
 						<li>
@@ -45,181 +80,183 @@
 							</div>
 						</li>
 						<li class="text-center">
-							<button class="btn btn-primary" onclick="login()">Submit</button> 
+							<button class="btn btn-primary text-uppercase" onclick="login()">Submit</button> 
 						</li>
 						<div class="dropdown-divider"></div>
 							<li class="text-center">
-								<a href="register.html" class="btn btn-info" role="button">Sign Up</a>
+								<a href="register.html" class="btn btn-primary text-uppercase" role="button">Sign Up</a>
 							</li>
 					</div>
 					<div id="user_div">
 						<li class="text-center" id="user_para">Hello User!</p>
 						<li class="text-center">
-							<button class="btn btn-danger" onclick="logout()">Log Out</button>
+							<button class="btn btn-danger text-uppercase" onclick="logout()">Log Out</button>
 						</li>
 					</div>
 				</div>
 			</div>	
-			<a href="#">
-				<span class="far fa-heart fa-lg" style="color:red" size="5x"></span>
-			</a>
 			
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search" placeholder="&#128269Search" aria-label="Search">
-				<button class="btn btn-primary btn-sm" type="submit">Search</button>
+				<button class="btn btn-primary text-uppercase" type="submit">Search</button>
 			</form>
 		</div>
 	</nav>
 	<header class="v-header container">
     <div class="fullscreen-video-wrap">
-      <video src="../resources/img/collegechef.mp4" autoplay="" loop="" muted>
+      <video src="../resources/img/collegechef.mp4" type="video/mp4" autoplay="" loop="" muted>
     </video>
     </div>
-    <div class="header-overlay"></div>
     <div class="header-content text-md-center">
       <h1 id="home_head">Welcome to CollegeChef™</h1>
       <p id="home_para">Here at CollegeChef™, we hope to provide you with the best recipes that fit your lifestyle. Click the button below to sign up and start cooking.</p>
       <a id="home_btn" href="register.html" class="btn btn-dark btn-lg">Register Here</a>
     </div>
-  </header>
+	</header>
 
-  <section class="section section-a" id="section-a">
-    <div class="container" style=" rounded; background-color:white;">
-      <h2>Select Your Ingredients</h2>
-	  <br>
-      <div class="container">
-		<table class="table">
-		  <thead>
-			<tr>
-			  <th scope="col" >Fruits</th>
-			  <th scope="col">Vegetables</th>
-			  <th scope="col">Grains</th>
-			  <th scope="col">Meat</th>
-			  <th scope="col">Dairy</th>
-			  <th scope="col">Other</th>
-			</tr>
-		  </thead>
-		  <tbody>
-			<tr>
-			  <td>
-				<div id="list1" class="dropdown-check-list" onclick="displaylist('list1', 'fruits')" tabindex="100">
-					<span class="anchor">Select Fruits</span>
-					<ul id="fruits" class="items">
-						<li><input type="checkbox" />Apple </li>
-						<li><input type="checkbox" />Orange</li>
-						<li><input type="checkbox" />Grapes </li>
-						<li><input type="checkbox" />Berry </li>
-						<li><input type="checkbox" />Mango </li>
-						<li><input type="checkbox" />Banana </li>
-						<li><input type="checkbox" />Tomato</li>
-					</ul>
+	<div id="loggedin">
+		<section class="section">
+			<div class="text-center" id="section-a">
+				<h2>Select Your Ingredients</h2>
+				<br>
+				<table class="table">
+						<thead>
+								<tr>
+										<th scope="col" >Fruits</th>
+										<th scope="col">Vegetables</th>
+										<th scope="col">Grains</th>
+										<th scope="col">Meat</th>
+										<th scope="col">Dairy</th>
+										<th scope="col">Other</th>
+								</tr>
+						</thead>
+						<tbody>
+								<tr>
+										<td>
+												<select class="selectpicker" data-live-search="true" multiple title="Select Fruits" data-width="150px" data-size="5">
+														<option name="ingredients" value="apple">Apples</option>
+														<option name="ingredients" value="orange">Oranges</option>
+														<option name="ingredients" value="grape">Grapes</option>
+														<option name="ingredients" value="strawberry">Strawberry</option>
+														<option name="ingredients" value="mango">Mango</option>
+														<option name="ingredients" value="banana">Banana</option>
+														<option name="ingredients" value="tomatoes">Tomatoes</option>
+												</select>
+										</td>
+										<td>
+												<select class="selectpicker" data-live-search="true" multiple title="Select Vegetables" data-width="150px" data-size="5">
+														<option name="ingredients" value="broccoli">Broccoli</option>
+														<option name="ingredients" value="cabbage">Cabbage</option>
+														<option name="ingredients" value="carrots">Carrots</option>
+														<option name="ingredients" value="asparagus">Asparagus</option>
+														<option name="ingredients" value="cucumber">Cucumber</option>
+														<option name="ingredients" value="radish">Radish</option>
+														<option name="ingredients" value="potatoes">Potatoes</option>
+												</select>
+										</td>
+										<td>
+												<select class="selectpicker" data-live-search="true" multiple title="Select Grains" data-width="150px" data-size="5">
+														<option name="ingredients" value="rice">Rice</option>
+														<option name="ingredients" value="bread">Bread</option>
+														<option name="ingredients" value="corn">Corn</option>
+														<option name="ingredients" value="tofu">Tofu</option>
+														<option name="ingredients" value="sesame">Sesame</option>
+														<option name="ingredients" value="flour">Flour</option>
+												</select>
+										</td>
+										<td>
+												<select class="selectpicker" data-live-search="true" multiple title="Select Meats" data-width="150px" data-size="5">
+														<option name="ingredients" value="chicken">Chicken</option>
+														<option name="ingredients" value="beef">Beef</option>
+														<option name="ingredients" value="turkey">Turkey</option>
+														<option name="ingredients" value="pork">Pork</option>
+														<option name="ingredients" value="ham">Ham</option>
+														<option name="ingredients" value="duck">Duck</option>
+														<option name="ingredients" value="lamb">Lamb</option>
+												</select>
+										</td>
+										<td>
+												<select class="selectpicker" data-live-search="true" multiple title="Select Dairy" data-width="150px" data-size="5">
+														<option name="ingredients" value="milk">Milk</option>
+														<option name="ingredients" value="yogurt">Yogurt</option>
+														<option name="ingredients" value="butter">Butter</option>
+														<option name="ingredients" value="cheddar cheese">Cheddar Cheese</option>
+														<option name="ingredients" value="pepper jack">Pepper Jack Cheese</option>
+														<option name="ingredients" value="sour cream">Sour Cream</option>
+														<option name="ingredients" value="ice cream">Ice Cream</option>
+												</select>
+										</td>
+										<td>
+												<select class="selectpicker" data-live-search="true" multiple title="Select Other" data-width="150px" data-size="5">
+														<option name="ingredients" value="eggs">Eggs</option>
+														<option name="ingredients" value="olive oil">Olive Oil</option>
+														<option name="ingredients" value="salt">Salt</option>
+														<option name="ingredients" value="pepper">Pepper</option>
+														<option name="ingredients" value="dried bread crumbs">Dried Bread Crumbs</option>
+														<option name="ingredients" value="ketchup">Ketchup</option>
+														<option name="ingredients" value="mayonnaise">Mayonnaise</option>
+												</select>
+										</td>
+										<td>
+											<select class="selectpicker" data-live-search="true" multiple title="Filter Ingredients" data-width="150px">
+													<option name="filter" value="vegetarian">Vegetarian</option>
+													<option name="filter" value="vegan">Vegan</option>
+													<option name="filter" value="gluten_free">Gluten Free</option>
+													<option name="filter" value="pescatarian">Pescatarian</option>
+											</select>
+									</td>
+								</tr> 
+						</tbody>            
+					</table>	
+					<br>
+
+					<div class="text-center">
+						<button class="btn info" onclick ="loadDoc()">Search Recipes</button>
+						<button class="btn warning" onclick ="resetSearch()">Reset Search</button>
+					</div>
+
+					<div class="loadRecp" id="loader-wrapper" style="display: none">
+						<br>
+						<br>
+						<br>
+						<br>
+						<div id="loader"></div>
+					</div>
+
+
+
+			</div>
+
+			<div class = "container" id="section-b" style="display: none">
+				<div class = "row" id = "recipes-location">
+					
 				</div>
-			  </td>
-			  <td>
-				<div id="list2" class="dropdown-check-list" onclick="displaylist('list2', 'veggies')" tabindex="100">
-					<span class="anchor">Select Vegetables</span>
-					<ul id="veggies" class="items">
-						<li><input type="checkbox" />Broccoli </li>
-						<li><input type="checkbox" />Cabbage</li>
-						<li><input type="checkbox" />Carrots </li>
-						<li><input type="checkbox" />Asparagus </li>
-						<li><input type="checkbox" />Cucumber </li>
-						<li><input type="checkbox" />Radish </li>
-						<li><input type="checkbox" />Potatoes</li>
-					</ul>
-				</div>
-				
-			  </td>
-			  
-			  <td>
-				<div id="list3" class="dropdown-check-list" onclick="displaylist('list3', 'grains')" tabindex="100">
-					<span class="anchor">Select Grains</span>
-					<ul id="grains" class="items">
-						<li><input type="checkbox" />Rice </li>
-						<li><input type="checkbox" />Bread</li>
-						<li><input type="checkbox" />Corn </li>
-						<li><input type="checkbox" />Soy Beans </li>
-						<li><input type="checkbox" />Cucumber </li>
-						<li><input type="checkbox" />Tofu </li>
-						<li><input type="checkbox" />Sesame</li>
-					</ul>
-				</div>
-				
-			  </td>
-			  <td>
-				<div id="list4" class="dropdown-check-list" onclick="displaylist('list4', 'meats')" tabindex="100">
-					<span class="anchor">Select Meats</span>
-					<ul id="meats" class="items">
-						<li><input type="checkbox" />Chicken</li>
-						<li><input type="checkbox" />Beef</li>
-						<li><input type="checkbox" />Turkey </li>
-						<li><input type="checkbox" />Pork</li>
-						<li><input type="checkbox" />Ham</li>
-						<li><input type="checkbox" />Duck</li>
-						<li><input type="checkbox" />Lamb</li>
-					</ul>
-				</div>
+				<br>
+				<br>
+				<button class="btn btn-primary" onclick="newsearch()">Make New Search</button>
+				<br>
+			</div>
+			
+		</section>
 		
-			  </td>
-			  <td>
-				<div id="list5" class="dropdown-check-list" onclick="displaylist('list5', 'dairy')" tabindex="100">
-					<span class="anchor">Select Dairy</span>
-					<ul id="dairy" class="items">
-						<li><input type="checkbox" />Milk</li>
-						<li><input type="checkbox" />Yogurt</li>
-						<li><input type="checkbox" />Butter </li>
-						<li><input type="checkbox" />Cheddar Cheese</li>
-						<li><input type="checkbox" />Pepper Jack Cheese</li>
-						<li><input type="checkbox" />Sour Cream</li>
-						<li><input type="checkbox" />Ice Cream</li>
-					</ul>
-				</div>
-				
-			  </td>
-			  <td>
-				<div id="list6" class="dropdown-check-list" onclick="displaylist('list6', 'other')" tabindex="100">
-					<span class="anchor" >Select Other</span>
-					<ul id="other" class="items">
-						<li><input type="checkbox" />Eggs</li>
-						<li><input type="checkbox" />Olive Oil</li>
-						<li><input type="checkbox" />Salt </li>
-						<li><input type="checkbox" />Pepper</li>
-						<li><input type="checkbox" />Dried Bread Crumbs</li>
-						<li><input type="checkbox" />Ketchup</li>
-						<li><input type="checkbox" />Mayonnaise</li>
-					</ul>
-				</div>
-				
-			  </td>
-			  <td>
-				<div class="dropdown">
-				  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-					Filter
-				  </button>
-				  <div class="dropdown-menu">
-					<a class="dropdown-item" href="#">Filter 1</a>
-					<a class="dropdown-item" href="#">Filter 2</a>
-					<a class="dropdown-item" href="#">Filter 3</a>
-				  </div>
-			  </div>
-			  </td>
-			</tr>
-		  </tbody>
-		</table>
-		<br>
-		
-		<div class="text-center">
-			<a href="#" class="btn btn-primary" role="button">Search Recipes</a>
-		</div>
-		<br>
 	</div>
-    </div>
-  </section>
+
+	<footer id="lab_social_icon_footer">
+			<div class="container">
+					<div class="text-center center-block">
+								<a href="https://www.facebook.com/cuboulder/"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
+								<a href="https://twitter.com/CUBoulder"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
+								<a href="https://www.instagram.com/cuboulder/?hl=en"><i id="social-gp" class="fa fa-instagram fa-3x social"></i></a>
+					</div>
+			</div>
+	</footer>
+
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src=../resources/js/"home.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+  <script type="text/javascript" src="../resources/js/home.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
   <script>
 		  // Initialize Firebase
@@ -234,7 +271,9 @@
 		firebase.initializeApp(config);
   </script>
 	
-  <script src="../resources/js/accounts.js"></script>
+	<script src="../resources/js/accounts.js"></script>
+	
+
   
 </body>
 
