@@ -32,12 +32,33 @@ function onChecked(id){
 }*/
 
 function submit(){
+  //document.getElementsByClassName('btn').disabled = true;
+  //document.getElementById('veget').style.background-color = "B9BEC5";
+  //alert("Thank you! Your preferences have been submitted!");
+  document.getElementById('veget').disabled = true;
+  document.getElementById('vegan').disabled = true;
+  document.getElementById('gf').disabled = true;
+  document.getElementById('pesc').disabled = true;
+  $(".overlay").fadeIn("slow");
+  $(".overlay").css("display", "block");
+
+  
+  setTimeout(writeUserData, 500);
+  //window.location.href = "../views/home.html";
+}
+
+
+function writeUserData() {
+
   var veg = document.getElementById('veget').value;
   var vegan = document.getElementById('vegan').value;
   var gluten_free = document.getElementById('gf').value;
   var pesc = document.getElementById('pesc').value;
 
-  if (veg == "true") {veg = true}
+  if (veg == "true") {
+    veg = true;
+    //document.getElementById('veget').style.background-color = "B9BEC5";
+  }
   else{veg = false}
 
   if (vegan == "true") {vegan = true}
@@ -48,15 +69,6 @@ function submit(){
 
   if (pesc == "true") { pesc = true }
   else {pesc = false}
-
-  writeUserData(veg, vegan, gluten_free,pesc);
-
-
-}
-
-
-function writeUserData(veg, vegan, gluten_free, pesc) {
-
   var myFirebase = firebase.database().ref();
   var CurrentUser = firebase.auth().currentUser;
   var users = myFirebase.child('users');
@@ -70,6 +82,13 @@ function writeUserData(veg, vegan, gluten_free, pesc) {
     "vegan": vegan,
     "gluten_free":gluten_free,
     "pesc":pesc
+    })
+    .then(function() {
+      alert("Thank you! Your preferences have been submitted!");
+      window.location.href = "../views/home.html";
+    })
+    .catch(function() {
+      console.log("Data was not written");
     });
   }
 
@@ -78,6 +97,7 @@ function writeUserData(veg, vegan, gluten_free, pesc) {
   }
 
   console.log("writeUserData finished")
+  //window.location.href = "../views/home.html";
 }
 
 //writeUserData("XMYKzifG7kMPk08tixxyqUaIFN83","quachdylan110@gmail.com","hello123",true, false, false, false);
