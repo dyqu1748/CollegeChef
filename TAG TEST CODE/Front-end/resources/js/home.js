@@ -35,17 +35,17 @@ function displaylist(listnum, items){
 
 function restrictions(temp)
     {
-        document.getElementById('vegitarian').innerHTML = "";
+        document.getElementById('vegetarian').innerHTML = "";
         document.getElementById('vegan').innerHTML = "";
         document.getElementById('gluten').innerHTML = "";
         if(temp.vegetarian == true)
         {
-            document.getElementById('vegitarian').innerHTML += '<p> Vegitarian: Yes</p>';
+            document.getElementById('vegetarian').innerHTML += '<p> Vegetarian: Yes</p>';
     
         }
         else if(temp.vegetarian == false)
         {
-            document.getElementById('vegitarian').innerHTML += '<p> Vegitarian: No</p>';
+            document.getElementById('vegetarian').innerHTML += '<p> Vegetarian: No</p>';
         }
         if(temp.vegan == true)
         {
