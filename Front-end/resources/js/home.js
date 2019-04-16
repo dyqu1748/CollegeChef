@@ -155,20 +155,24 @@ function restrictions(temp)
                     //var card =  "";
                     // card += '<div class="row">';
                     // card += '<div class="col-sm-6">';
-                    
-                    card += '<div class="card">';
-                    card +=  '<img class="card-img-top" src='+ response[i]['image'] +'>';
-                    card +=  '<div class="card-body">';
+                    card += '<article class="card"><div class="card__info-hover"></div>';
+                    card +=  '<div class="card__img" style="background-image: url(\''+ response[i]['image'] +'\')"></div>';
+                    card += '<a href="#" id='+ response[i].id + ' class="card_link" data-toggle="modal" data-target="#exampleModal" onclick="displayMoreInfo(this)">';
+                    card += '<div class="card__img--hover" style="background-image: url(\''+ response[i]['image'] +'\')">';
+                    card+= '</div></a>';
+                    card +=  '<div class="card__info"><h4 class="card__title">';
                     // card +=  '<img class="card-img-top src='+ response[i]['image'];
-                    card +=  '<h5 class="card-title">'; 
+                    // card +=  '<h5 class="card-title">'; 
                     card +=  response[i]['title']; 
-                    card +=  '</h5><p class="card-text">Used Ingredient Count: ';
-                    card +=  response[i]['usedIngredientCount'];
-                    card +=  '<br> Missed Ingredient Count: ';
-                    card +=  response[i]['missedIngredientCount'];
-                    card +=  '</p><btn id='+ response[i].id;
-                    card +=  ' href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="displayMoreInfo(this)">See More Information</btn></div></div>';    
+                    card +=  '</h4></div></article>';
+                    // card +=  response[i]['usedIngredientCount'];
+                    // card +=  '<br> Missed Ingredient Count: ';
+                    // card +=  response[i]['missedIngredientCount'];
+                    // card +=  '</p></div></article>';
+                    // card += '<btn id='+ response[i].id';
+                    // card +=  ' href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="displayMoreInfo(this)">See More Information</btn></div></div>';    
                     // card += '</div></div>';
+                    // card += '<article class="card"><div class="card__info-hover"></div><div class="card__img" style="background-image: url(\''+response[i]['image'] +'\')"></div><a href="#" class="card_link"><div class="card__img--hover" style="background-image: url(\''+response[i]['image'] +'\')"></div></a><div class="card__info"><h3 class="card__title">Crisp Spanish tortilla Matzo brei</h3></div></article>';
                    
                     
                 }
@@ -182,7 +186,6 @@ function restrictions(temp)
         xhttp.setRequestHeader("X-RapidAPI-Key", "601fdf014cmsh9774814f1ee4e3dp10ecadjsn1de8cb4425cc");
         xhttp.send();
         $(".loadRecp").fadeIn();
-        $(".loadRecp").css("display", "block");
         setTimeout(showRecipes, 2000);
     };
 
@@ -190,9 +193,7 @@ function restrictions(temp)
     {
         $("#section-a").fadeOut();
         $(".loadRecp").fadeOut();
-        $(".loadRecp").css("display", "none");
         $("#section-b").fadeIn();
-        $("#section-b").css("display", "block");
         window.location.hash = "section-b";
     }
 
@@ -200,9 +201,7 @@ function restrictions(temp)
     {
         $('.selectpicker').selectpicker('deselectAll');
         $("#section-b").fadeOut("slow");
-        $("#section-b").css("display", "none");
         $("#section-a").fadeIn("slow");
-        $("#section-a").css("display", "block");
         window.location.hash = "section-a";
     }
     
