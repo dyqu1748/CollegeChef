@@ -7,46 +7,35 @@
   <link rel="stylesheet" href="../resources/css/signup.css">
   <link rel="stylesheet" href ="../resources/css/user_pref.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand" href="home.html">
-		<img src="../resources/img/chef.jpg" alt="placeholder logo" width="40" height="40">
-		CollegeChef™
-	</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
-				<a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Recipes</a>
-			</li>
-		</ul>
-    </div>
-</nav>
+  <div class="overlay" style="display: none"></div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 0.9">
+    <a class="navbar-brand" href="home.html">
+      <img src="../resources/img/chef.jpg" alt="placeholder logo" width="30" height="30">
+      CollegeChef™
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
 	</br>
 
+  <div class="wrapper fade-in">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-xl-9 mx-auto">
+          <div class="card card-signin flex-row my-5">
+            <div class="card-img-left d-none d-md-flex"></div>
+            <div class="card-body">
+              <h5 class="card-title text-center">User Preferences</h5>
+              <div id="login_div" class="signin">
+                  <p>Please <a href="sign_in.html">sign in</a> if you would like to make changes to your food preferences.</p>
+              </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-10 col-xl-9 mx-auto">
-        <div class="card card-signin flex-row my-5">
-          <div class="card-img-left d-none d-md-flex">
-          </div>
-          <div class="card-body">
-            <h5 class="card-title text-center">User Preferences</h5>
-            <div id="login_div" class="signin">
-                <p>Please <a href="sign_in.html">sign in</a> if you would like to make changes to your food preferences.</p>
-			</div>
-
-			<div id="user_div" class="signin">
+              <div id="user_div" class="signin">
                 <div class="text-center">
                     <label>Vegetarian
                         <label class="checkbox-label">
@@ -83,18 +72,28 @@
 
                     <button class="btn btn-lg btn-primary btn-block text-uppercase" onclick="submit()">Submit</button>
                 </div>
-			</div>
+              </div>
 
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <footer id="lab_social_icon_footer">
+      <div class="container">
+          <div class="text-center center-block">
+                <a href="https://www.facebook.com/cuboulder/"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
+                <a href="https://twitter.com/CUBoulder"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
+                <a href="https://www.instagram.com/cuboulder/?hl=en"><i id="social-gp" class="fa fa-instagram fa-3x social"></i></a>
+          </div>
+      </div>
+  </footer>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="../resources/js/register.js"></script>
 
   <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
   <script>

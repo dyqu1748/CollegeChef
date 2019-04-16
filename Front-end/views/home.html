@@ -44,7 +44,7 @@
 		</div>
 		</div>
 
-	<nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top">
+	<nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top" style="opacity: 0.9">
 		<a class="navbar-brand" href="home.html">
 			<img src="../resources/img/chef.jpg" alt="placeholder logo" width="30" height="30">
 			CollegeChef™
@@ -54,52 +54,49 @@
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Recipes</a>
-				</li>
-			</ul>
-			<div class="dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<img src="../resources/img/push.gif" class="rounded-circle" alt="placeholder profile pic" width="40" height="40">
-				</a>
-				<div class="dropdown-menu" role="menu" aria-labelledby="profileDropdown" id="dropdownlogin">
-					<div id="login_div">
-						<li class="text-center">Sign in</li>
-						<li>
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Email" id="inputEmail">
-							</div>
-						</li>
-						<li>
-							<div class="form-group">
-								<input type="password" class="form-control" placeholder="Password" id="inputPassword">
-							</div>
-						</li>
-						<li class="text-center">
-							<button class="btn btn-primary text-uppercase" onclick="login()">Submit</button> 
-						</li>
-						<div class="dropdown-divider"></div>
-							<li class="text-center">
-								<a href="register.html" class="btn btn-primary text-uppercase" role="button">Sign Up</a>
+			<ul class="navbar-nav mr-auto"></ul>
+			<ul class="navbar-nav">
+				<div class="dropdown dropleft">
+					<a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<img src="../resources/img/push.gif" class="rounded-circle" alt="placeholder profile pic" width="40" height="40">
+					</a>
+					<div class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="profileDropdown" id="dropdownlogin">
+						<div id="login_div">
+							<li class="text-center">Sign in</li>
+							<li>
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Email" id="inputEmail">
+								</div>
 							</li>
+							<li>
+								<div class="form-group">
+									<input type="password" class="form-control" placeholder="Password" id="inputPassword">
+								</div>
+							</li>
+							<li class="text-center">
+								<button class="btn btn-primary text-uppercase" onclick="login()">Submit</button> 
+							</li>
+							<div class="dropdown-divider"></div>
+								<li class="text-center">
+									<a href="register.html" class="btn btn-primary text-uppercase" role="button">Sign Up</a>
+								</li>
+							</div>
+							<div id="user_div">
+								<li class="text-center" id="user_para">Hello User!</p>
+								<li class="text-center">
+											<br>
+											<a class="btn btn-primary text-uppercase" href="user_pref.html">Change Pref</a>
+								</li>
+								<li class="text-center">
+									<br>
+									<button class="btn btn-danger text-uppercase" onclick="logout()">Log Out</button>
+								</li>
+							</div>
 					</div>
-					<div id="user_div">
-						<li class="text-center" id="user_para">Hello User!</p>
-						<li class="text-center">
-							<button class="btn btn-danger text-uppercase" onclick="logout()">Log Out</button>
-						</li>
-					</div>
-				</div>
-			</div>	
-			
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search" placeholder="&#128269Search" aria-label="Search">
-				<button class="btn btn-primary text-uppercase" type="submit">Search</button>
-			</form>
+				</div>	
+				
+				
+			</ul>
 		</div>
 	</nav>
 	<header class="v-header container">
@@ -114,10 +111,10 @@
     </div>
 	</header>
 
-	<div id="loggedin">
+	<div class="container-fluid" id="loggedin" style="background-color: rgb(231, 245, 250); opacity: .95">
 		<section class="section">
 			<div class="text-center" id="section-a">
-				<h2>Select Your Ingredients</h2>
+				<h1>Select Your Ingredients</h1>
 				<br>
 				<table class="table">
 						<thead>
@@ -133,7 +130,7 @@
 						<tbody>
 								<tr>
 										<td>
-												<select class="selectpicker" data-live-search="true" multiple title="Select Fruits" data-width="150px" data-size="5">
+												<select class="selectpicker" data-live-search="true" multiple title="Select Fruits" data-width="165px" data-size="5">
 														<option name="ingredients" value="apple">Apples</option>
 														<option name="ingredients" value="orange">Oranges</option>
 														<option name="ingredients" value="grape">Grapes</option>
@@ -144,7 +141,7 @@
 												</select>
 										</td>
 										<td>
-												<select class="selectpicker" data-live-search="true" multiple title="Select Vegetables" data-width="150px" data-size="5">
+												<select class="selectpicker" data-live-search="true" multiple title="Select Vegetables" data-width="165px" data-size="5">
 														<option name="ingredients" value="broccoli">Broccoli</option>
 														<option name="ingredients" value="cabbage">Cabbage</option>
 														<option name="ingredients" value="carrots">Carrots</option>
@@ -155,7 +152,7 @@
 												</select>
 										</td>
 										<td>
-												<select class="selectpicker" data-live-search="true" multiple title="Select Grains" data-width="150px" data-size="5">
+												<select class="selectpicker" data-live-search="true" multiple title="Select Grains" data-width="165px" data-size="5">
 														<option name="ingredients" value="rice">Rice</option>
 														<option name="ingredients" value="bread">Bread</option>
 														<option name="ingredients" value="corn">Corn</option>
@@ -165,7 +162,7 @@
 												</select>
 										</td>
 										<td>
-												<select class="selectpicker" data-live-search="true" multiple title="Select Meats" data-width="150px" data-size="5">
+												<select class="selectpicker" data-live-search="true" multiple title="Select Meats" data-width="165px" data-size="5">
 														<option name="ingredients" value="chicken">Chicken</option>
 														<option name="ingredients" value="beef">Beef</option>
 														<option name="ingredients" value="turkey">Turkey</option>
@@ -176,7 +173,7 @@
 												</select>
 										</td>
 										<td>
-												<select class="selectpicker" data-live-search="true" multiple title="Select Dairy" data-width="150px" data-size="5">
+												<select class="selectpicker" data-live-search="true" multiple title="Select Dairy" data-width="165px" data-size="5">
 														<option name="ingredients" value="milk">Milk</option>
 														<option name="ingredients" value="yogurt">Yogurt</option>
 														<option name="ingredients" value="butter">Butter</option>
@@ -187,7 +184,7 @@
 												</select>
 										</td>
 										<td>
-												<select class="selectpicker" data-live-search="true" multiple title="Select Other" data-width="150px" data-size="5">
+												<select class="selectpicker" data-live-search="true" multiple title="Select Other" data-width="165px" data-size="5">
 														<option name="ingredients" value="eggs">Eggs</option>
 														<option name="ingredients" value="olive oil">Olive Oil</option>
 														<option name="ingredients" value="salt">Salt</option>
@@ -197,14 +194,6 @@
 														<option name="ingredients" value="mayonnaise">Mayonnaise</option>
 												</select>
 										</td>
-										<td>
-											<select class="selectpicker" data-live-search="true" multiple title="Filter Ingredients" data-width="150px">
-													<option name="filter" value="vegetarian">Vegetarian</option>
-													<option name="filter" value="vegan">Vegan</option>
-													<option name="filter" value="gluten_free">Gluten Free</option>
-													<option name="filter" value="pescatarian">Pescatarian</option>
-											</select>
-									</td>
 								</tr> 
 						</tbody>            
 					</table>	
@@ -227,20 +216,19 @@
 
 			</div>
 
-			<div class = "container" id="section-b" style="display: none">
-				<div class = "row" id = "recipes-location">
+			<div class = "container" id="section-b" style="display: none;background-color: rgb(231, 245, 250)"">
+				<div  id = "recipes-location">
 					
 				</div>
 				<br>
 				<br>
-				<button class="btn btn-primary" onclick="newsearch()">Make New Search</button>
+				<button class="btn info" onclick="newsearch()">Make New Search</button>
 				<br>
 			</div>
 			
 		</section>
 		
 	</div>
-
 	<footer id="lab_social_icon_footer">
 			<div class="container">
 					<div class="text-center center-block">
