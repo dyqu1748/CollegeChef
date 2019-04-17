@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CollegeChef - User Preferences</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../resources/css/signup.css">
+  <link rel="stylesheet" href ="../resources/css/user_pref.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="home.html">
+		<img src="../resources/img/chef.jpg" alt="placeholder logo" width="40" height="40">
+		CollegeChef™
+	</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Recipes</a>
+			</li>
+		</ul>
+    </div>
+</nav>
+	</br>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-xl-9 mx-auto">
+        <div class="card card-signin flex-row my-5">
+          <div class="card-img-left d-none d-md-flex">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-center">User Preferences</h5>
+            <div id="login_div" class="signin">
+                <p>Please <a href="sign_in.html">sign in</a> if you would like to make changes to your food preferences.</p>
+			</div>
+
+			<div id="user_div" class="signin">
+                <div class="text-center">
+                    <label>Vegetarian
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="veget" name="vegetarian_option" onchange="onChecked('veget')" value="false">
+                            <span class="checkbox-custom circular"></span>
+                        </label>
+                    </label>
+                    <br>
+
+                    <label class=>Vegan
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="vegan" name="vegan_option" onchange="onChecked('vegan')" value="false">
+                            <span class="checkbox-custom circular"></span>
+                        </label>
+                    </label>
+                    <br>
+
+                    <label>Gluten Free
+                        <label class="checkbox-label">
+                                <input type="checkbox" id="gf" name=gluten_free onchange="onChecked('gf')" value="false">
+                                <span class="checkbox-custom circular"></span>
+                        </label>
+                    </label>
+                    <br>
+
+                    <label>Pescatarian
+                        <label class="checkbox-label">
+                                <input type="checkbox" id="pesc" name=pesc onchange="onChecked('pesc')" value="false">
+                                <span class="checkbox-custom circular"></span>
+                        </label>
+                    </label>
+                    <br>
+                    <br>
+
+                    <button class="btn btn-lg btn-primary btn-block text-uppercase" onclick="submit()">Submit</button>
+                </div>
+			</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="../resources/js/register.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+  <script>
+		  // Initialize Firebase
+		  var config = {
+			apiKey: "AIzaSyBprXkeXD1HCJQZL4KtgmMaA3svUU7vcgI",
+			authDomain: "collegechef-1789f.firebaseapp.com",
+			databaseURL: "https://collegechef-1789f.firebaseio.com",
+			projectId: "collegechef-1789f",
+			storageBucket: "collegechef-1789f.appspot.com",
+			messagingSenderId: "231942064234"
+			};
+		firebase.initializeApp(config);
+  </script>
+
+    <script src="../resources/js/accounts.js"></script>
+    <script src="../resources/js/firebase_js_test_auto.js"></script>
+
+</body>
+
+</html>

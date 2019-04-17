@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CollegeChef - Sign In</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../resources/css/signup.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="home.html">
+      <img src="../resources/img/chef.jpg" alt="placeholder logo" width="30" height="30">
+      CollegeChef™
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Recipes</a>
+        </li>
+      </ul>
+    </div>	
+  </nav>
+  </br>
+
+  <div class="wrapper fade-in">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-xl-9 mx-auto">
+          <div class="card card-signin flex-row my-5">
+            <div class="card-img-left d-none d-md-flex">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-center">Sign In</h5>
+              <div id="login_div" class="signin">
+                
+                <div class="form-label-group">
+                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+                  <label for="inputEmail">Email address</label>
+                </div>
+
+                <div class="form-label-group">
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                  <label for="inputPassword">Password</label>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" onclick="login()">Sign In</button>
+                <a class="d-block text-center mt-2 small" href="register.html">Register Here</a>
+              </div>
+        
+              <div id="user_div">
+                <p>You will be redirected to the home page momentarily. Please wait. If you are not redirected back to the home page, please <a href="home.html">click here.</a></a></p>              
+              </div>
+        
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer id="lab_social_icon_footer">
+      <div class="container">
+          <div class="text-center center-block">
+                <a href="https://www.facebook.com/cuboulder/"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
+                <a href="https://twitter.com/CUBoulder"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
+                <a href="https://www.instagram.com/cuboulder/?hl=en"><i id="social-gp" class="fa fa-instagram fa-3x social"></i></a>
+          </div>
+      </div>
+  </footer>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+  <script>
+		  // Initialize Firebase
+		  var config = {
+			apiKey: "AIzaSyBprXkeXD1HCJQZL4KtgmMaA3svUU7vcgI",
+			authDomain: "collegechef-1789f.firebaseapp.com",
+			databaseURL: "https://collegechef-1789f.firebaseio.com",
+			projectId: "collegechef-1789f",
+			storageBucket: "collegechef-1789f.appspot.com",
+			messagingSenderId: "231942064234"
+			};
+		firebase.initializeApp(config);
+  </script>
+	
+  <script src="../resources/js/accounts.js"></script>
+  
+</body>
+
+</html>
