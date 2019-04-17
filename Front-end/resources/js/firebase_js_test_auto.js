@@ -14,6 +14,7 @@ function onLoad(){
   var ref = firebase.database().ref("users");
   var CurrentUser = firebase.auth().currentUser;
   console.log(CurrentUser.uid);
+  // want to implement some code that waits for them to sign in. Possibly work with dylan
   var uID = CurrentUser.uid;
 
   ref.once("value").then( function(snapshot) {
@@ -26,10 +27,23 @@ function onLoad(){
     console.log("vegan: " + vegan);
     console.log("pes: "+pesca);
 
-    if (veget) {document.getElementById("veget").checked = true;}
-    if (gf) {document.getElementById("gf").checked = true;}
-    if (vegan) {document.getElementById("vegan").checked = true;}
-    if (pesca) {document.getElementById("pesc").checked = true;}
+    if (veget) {
+      document.getElementById("veget").checked = true;
+      document.getElementById("veget").value = "true";
+    }
+    if (gf){
+      document.getElementById("gf").checked = true;
+      document.getElementById("gf").value = "true";
+    }
+    if (vegan) {
+      document.getElementById("vegan").checked = true;
+      document.getElementById("vegan").value = "true";
+    }
+    if (pesca) {
+      document.getElementById("pesc").checked = true;
+      document.getElementById("pesc").value = "true";
+    }
+
   }, function (error) {
     console.log("Error: "+error.code);
   });
@@ -103,6 +117,10 @@ function submit(){
   var vegan = document.getElementById('vegan').value;
   var gluten_free = document.getElementById('gf').value;
   var pesc = document.getElementById('pesc').value;
+  console.log("vegetarian: " + veg);
+  console.log("gluten free: " + gluten_free);
+  console.log("vegan: " + vegan);
+  console.log("pesc: "+pesc);
 
   if (veg == "true") {
     veg = true;
