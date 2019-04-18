@@ -35,17 +35,17 @@ function displaylist(listnum, items){
 
 function restrictions(temp)
     {
-        document.getElementById('vegetarian').innerHTML = "";
+        document.getElementById('vegitarian').innerHTML = "";
         document.getElementById('vegan').innerHTML = "";
         document.getElementById('gluten').innerHTML = "";
         if(temp.vegetarian == true)
         {
-            document.getElementById('vegetarian').innerHTML += '<p> Vegetarian: Yes</p>';
+            document.getElementById('vegitarian').innerHTML += '<p> Vegetarian: Yes</p>';
     
         }
         else if(temp.vegetarian == false)
         {
-            document.getElementById('vegetarian').innerHTML += '<p> Vegetarian: No</p>';
+            document.getElementById('vegitarian').innerHTML += '<p> Vegetarian: No</p>';
         }
         if(temp.vegan == true)
         {
@@ -92,10 +92,10 @@ function restrictions(temp)
         // do the http call.
         xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            //console.log(this.response)
+            // console.log(`IN displayMoreInfo ${JSON.stringify(this.response)}`);
             var json = JSON.parse(this.response);            
-            console.log("JSON: ",json);
-            console.log
+            // console.log("JSON: ",json);
+            // console.log
             // document.getElementById('zaiddemodisplay').innerHTML = json.vegetarian;
             document.getElementById('ModalLabel').innerHTML = json.title;
             console.log("TITLE: ", json.title);
@@ -106,9 +106,7 @@ function restrictions(temp)
             recipeList(json);
                         
         }
-        else {
-            console.log("Something went wrong")
-        }
+        
         }
         xhttp.open("GET", url,true);//, true);
         xhttp.setRequestHeader("X-RapidAPI-Key", "601fdf014cmsh9774814f1ee4e3dp10ecadjsn1de8cb4425cc");
@@ -151,9 +149,7 @@ function restrictions(temp)
                 generateCards(element, card, cardStyle);
             }           
         }
-        else {
-            console.log("Something went wrong")
-        }
+        
         }
         xhttp1.open("GET", url,true);//, true);
         xhttp1.setRequestHeader("X-RapidAPI-Key", "601fdf014cmsh9774814f1ee4e3dp10ecadjsn1de8cb4425cc");

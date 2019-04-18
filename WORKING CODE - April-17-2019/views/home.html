@@ -6,6 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="../resources/css/home.css" rel="stylesheet">
 	<link href="../resources/css/bootstrap-tagsinput.css" rel="stylesheet">
+	<!-- <link href="../resources/css/mdb.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+	<link href="../resources/css/mdb.min.css" rel="stylesheet"> -->
+	<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+<!-- Bootstrap core CSS -->
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> -->
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/css/mdb.min.css" rel="stylesheet">
 	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
@@ -16,36 +25,46 @@
 
 <body>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-				<div class="modal-content">
-				<div class="modal-header">
-						<h5 class="modal-title" id="ModalLabel"></h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-						</button>
-				</div>
-				<div class="modal-body">
-						<!-- <div  id="recipeIngredients"></div> -->
-						<div  id="recipeSteps"></div>
+<!-- Central Modal Medium Info -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <p class="heading lead" id="ModalLabel"></p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <div class="text-center">
+          <!-- <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i> -->
+          <div  id="recipeSteps"></div>
 						<div  id="recipeTime"></div>
 						<div  id="dietaryRestrictions">
-								<p id="vegetarian"></p>
+								<p id="vegitarian"></p>
 								<p id="gluten"></p>
 								<p id="vegan"></p>
 						</div>
 						<ul id="ingredientsList"></ul>
-						
-						<!-- <div id="otherThings"></div> -->
-						
-						<!-- <input type="text" id="candidate"/> -->
-				</div>
-				<div class="modal-footer">
-						<p id="zaiddemodisplay"></p>
-				</div>
-				</div>
-		</div>
-		</div>
+        </div>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" class="btn btn-primary">Get it now <i class="far fa-gem ml-1 text-white"></i></a>
+        <a type="button" class="btn btn-outline-primary waves-effect" data-dismiss="modal">No, thanks</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!-- Central Modal Medium Info-->
 
 	<nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top">
 		<a class="navbar-brand" href="home.html">
@@ -258,7 +277,7 @@
 	</footer>
 
   
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
@@ -266,7 +285,17 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tagmanager/3.0.2/tagmanager.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 	<script type="text/javascript" src="../resources/js/home.js"></script>
-	<script type="text/javascript" src="../resources/js/bootstrap-tagsinput.min.js"></script>
+	 <!-- <script type="text/javascript" src="../resources/js/popper.min.js"></script> -->
+	<script type="text/javascript" src="../resources/js/mdb.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/js/mdb.min.js"></script>
+	<!-- <script type="text/javascript" src="../resources/js/mdb.min.js"></script> -->
+
+<script type="text/javascript" src="../resources/js/bootstrap-tagsinput.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
   <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
   <script>
 		  // Initialize Firebase
