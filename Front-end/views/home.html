@@ -12,13 +12,6 @@
 	<link href="../resources/css/bootstrap-tagsinput.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-<!-- Bootstrap core CSS -->
-<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> -->
-<!-- Material Design Bootstrap -->
-<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/css/mdb.min.css" rel="stylesheet"> -->
-	
-	
-
 
 </head>
 
@@ -230,6 +223,12 @@
 					<br>
 
 					<div class="text-center">
+						<h6>Can't find an ingredent? Add them to the search here!</h6>
+
+						<input name="tags" type="text" value="" data-role="tagsinput" id="tags" class="form-control">
+					</div>
+
+					<div class="text-center">
 						<button class="btn info" onclick ="loadDoc()">Search Recipes</button>
 						<button class="btn warning" onclick ="resetSearch()">Reset Search</button>
 					</div>
@@ -246,13 +245,13 @@
 
 			</div>
 
-			<div class = "container" id="section-b" style="display: none;background-color: rgb(231, 245, 250)"">
-				<div  id = "recipes-location">
+			<div class = "container-fluid" id="section-b" style="display: none;background-color: rgb(231, 245, 250)">
+				<div class="row"  id = "recipes-location" >
 					
 				</div>
 				<br>
 				<br>
-				<button class="btn info" onclick="newsearch()">Make New Search</button>
+				<div class = "container"><button class="btn info " onclick="newsearch()">Make New Search</button></div>
 				<br>
 			</div>
 			
@@ -269,7 +268,7 @@
 			</div>
 	</footer>
 
-  
+ 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -293,7 +292,6 @@
   </script>
 	
 	<script src="../resources/js/accounts.js"></script>
-	
 
   
 </body>
