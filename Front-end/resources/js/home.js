@@ -300,7 +300,7 @@ function restrictions(temp)
 
     function newsearch()
     {
-        $('.selectpicker').selectpicker('deselectAll');
+        resetSearch();
         $("#section-b").fadeOut("slow");
         $("#section-a").fadeIn("slow");
         window.location.hash = "section-a";
@@ -308,5 +308,6 @@ function restrictions(temp)
     
     function resetSearch()
     {
+        $("#tags").tagsinput('removeAll');
         $('.selectpicker').selectpicker('deselectAll');
     }
