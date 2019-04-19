@@ -80,35 +80,38 @@ function restrictions(temp)
     function displayMoreInfo(element) 
     {
         var xhttp = new XMLHttpRequest();
-        //console.log('function called')
-        //console.log(element.id);
+        console.log('function called')
+        console.log('ID: ',element.id);
         var id= element.id;
+       
         url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+ id+ "/information"
         // console.log(`url is: ${url}`);
-        // Next encode your ing_url using : encodeURI
-        //ing_url = encodeURI(ing_url)
-        // console.log(url);
-        // do the http call.
+        
+        
+
         xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            //console.log(this.response)
+            
             var json = JSON.parse(this.response);            
-            //console.log(json);
-            // document.getElementById('zaiddemodisplay').innerHTML = json.vegetarian;
+            
             document.getElementById('ModalLabel').innerHTML = json.title;
-            document.getElementById('recipeSteps').innerHTML = '<p>'+ json.instructions +'</p>';
-            document.getElementById('recipeTime').innerHTML = '<p>Meal Ready In: '+ json.readyInMinutes +' minutes.</p>';
+            console.log("TITLE: ", json.title);
+            document.getElementById('picture').src = json.image;
+            document.getElementById('recipeSteps').innerHTML = '<strong>Instructions:</strong><br><p>'+ json.instructions +'</p>';
+            document.getElementById('recipeTime').innerHTML = '<strong>Cook Time:</strong><br><p>Meal ready in: '+ json.readyInMinutes +' minutes</p>';
+            
             restrictions(json);
             recipeList(json);
+            
+            
                         
         }
-        else {
-            console.log("Something went wrong")
-        }
+        
         }
         xhttp.open("GET", url,true);//, true);
-        xhttp.setRequestHeader("X-RapidAPI-Key", "601fdf014cmsh9774814f1ee4e3dp10ecadjsn1de8cb4425cc");
+        xhttp.setRequestHeader("X-RapidAPI-Key", "7d3874f610msh7daec34baac5e17p16884ajsn3e659ffc6182");
         xhttp.send();
+        
     }
     function loadDoc() 
     {
