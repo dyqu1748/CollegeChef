@@ -116,10 +116,10 @@ function restrictions(temp)
     // {
     //     console.log("IN HERE");
 
-    //     // $("#picture").html("");
-    //     $("#recipeSteps").html("");
-    //     $("#dietaryRestrictions").html("");
-    //     $("#ingredientsList").html("");
+    //     // $("#picture").html(" ");
+    //     $("#recipeSteps").html(" ");
+    //     $("#dietaryRestrictions").html(" ");
+    //     $("#ingredientsList").html(" ");
     // }
 
     function stuff(element, card) 
@@ -175,7 +175,7 @@ function restrictions(temp)
             card +=  '<br> Missed Ingredient Count: ';
             card +=  response['missedIngredientCount'];
             card +=  '</p><btn id='+ response.id;
-            card +=  ' href="#" class="btn btn-outline-warning waves-effect" data-toggle="modal" data-target="#exampleModal" onclick="displayMoreInfo(this)">See More Information</btn></div></div>'; 
+            card +=  ' href="#" class="btn info2" data-toggle="modal" data-target="#exampleModal" onclick="displayMoreInfo(this)">See More Information</btn></div></div>'; 
             card += '</div>';
             
             console.log("CARD TEST2: ", card);    
