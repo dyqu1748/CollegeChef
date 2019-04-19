@@ -351,7 +351,9 @@ border-bottom-right-radius: 12px;
 .card__title {
     margin-top: 5px;
     margin-bottom: 10px;
-    font-family: 'Roboto Slab', serif;
+    /* font-family: 'Roboto Slab', serif; */
+    color: #000000;
+    text-decoration: none;
 }
 
 .card:hover .card__img--hover {
@@ -368,6 +370,18 @@ border-bottom-right-radius: 12px;
     opacity: 1;
 }
 
+.card__ingred-info {
+  float: right;
+}
+
+.card__ingred {
+  font-size: 12px;
+  color: black;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+/* Testing */
 
 .modal-dialog.modal-notify .heading {
   margin: 0;
