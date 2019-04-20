@@ -9,6 +9,7 @@
 //       $(".loadPage").css("display", "none");
 //     });
 // });
+var counterCards = 0;
 
 
 function displaylist(listnum, items){
@@ -69,12 +70,9 @@ function restrictions(temp)
     {
         var list = document.getElementById("ingredientsList");
         list.innerHTML = "";
-        // console.log("HERERERE1"); 
         for(var i = 0; i < element.extendedIngredients.length; i++)
             {
                 list.innerHTML += '<li>'+ element.extendedIngredients[i].name +'</li>'
-                // console.log("HERERERE");    
-                // console.log("INGREDIENTS: ", element.extendedIngredients[i].name, ", i: ", i);
             }
     }
     function displayMoreInfo(element) 
@@ -85,7 +83,6 @@ function restrictions(temp)
         var id= element.id;
        
         url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+ id+ "/information"
-        // console.log(`url is: ${url}`);
         
         
 
@@ -107,30 +104,19 @@ function restrictions(temp)
                         
         }
         }
-        xhttp.open("GET", url,true);//, true);
+        xhttp.open("GET", url,true);
         xhttp.setRequestHeader("X-RapidAPI-Key", "7d3874f610msh7daec34baac5e17p16884ajsn3e659ffc6182");
         xhttp.send();
     }
 
-    //////Working////////////////////////////////////////////////////////////////////////////////////
-
-    function stuff(element) 
+    function checkQuality(element, restrictions) 
     {   
-        // if(card == undefined)
-        // {
-        //     card = "";
-        // }
         console.log("TEST1")
         var xhttp1 = new XMLHttpRequest();
         var id= element.id;
-        // console.log("1");
         url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+ id+ "/information"
         
         var id;
-        // card += '<div class="container-fluid">';
-        // card +=  '<div class="row">';
-        // card += '<div class="card-deck">';
-        // console.log("1");
         xhttp1.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             // console.log("1");
@@ -138,28 +124,26 @@ function restrictions(temp)
             var json = JSON.parse(this.response);            
             console.log("JSON: ", json);
             var cardStyle;
-            if(json.instructions == null)
+            if(json.instructions == null || (restrictions[0] == true && json.vegetarian == false) || (restrictions[1] == true && json.glutenFree == false) || (restrictions[2] == true && json.vegan == false))
             {   
-                // console.log("NO");
-                // cardStyle = 'none';
-                // generateCards(element, cardStyle);
+                console.log("Not Valid Recipe");
             }
             else
             {
                 cardStyle = 'visible';
                 generateCards(element, cardStyle);
+                counterCards = counterCards + 1;
             }           
         }
         else {
             console.log("Something went wrong")
         }
         }
-        xhttp1.open("GET", url,true);//, true);
+        xhttp1.open("GET", url,true);
         xhttp1.setRequestHeader("X-RapidAPI-Key", "601fdf014cmsh9774814f1ee4e3dp10ecadjsn1de8cb4425cc");
         xhttp1.send();
     }
-
-
+     
     function generateCards(response, style)
     {
         var cardStyle = style;
@@ -176,8 +160,6 @@ function restrictions(temp)
             card += '</div></a>';
             card += '<a href="#" id='+ response.id + ' class="card_link" data-toggle="modal" data-target="#exampleModal" onclick="displayMoreInfo(this)">';
             card +=  '<div class="card__info"><h4 class="card__title">';
-            // card +=  '<img class="card-img-top src='+ response[i]['image'];
-            // card +=  '<h5 class="card-title">'; 
             card +=  response['title']; 
             card +=  '</h4></div></a></div>';
             console.log("CARD TEST2: ", card);  
@@ -186,27 +168,31 @@ function restrictions(temp)
             {
                 card = "";
             }
-            
-            // }
-            // card+='</div></div></div>';
 
         }
     }
 
 
-
-
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     function loadDoc() 
     {
         document.getElementById("recipes-location").innerHTML = "";
+        counterCards = 0;
+
+        var ref = firebase.database().ref("users");
+        var CurrentUser = firebase.auth().currentUser;
+        var uID = CurrentUser.uid;
+
+        ref.once("value").then(function(snapshot){
+            var veget = snapshot.child(uID).child('veg').val();
+            var gf = snapshot.child(uID).child('gluten_free').val();
+            var vegan = snapshot.child(uID).child('vegan').val();
+            var pesca = snapshot.child(uID).child('pesc').val();
+
+        
+        var all_restrictions = [veget, gf, vegan, pesca]; 
         var xhttp = new XMLHttpRequest();
         var all_ingredients = document.getElementsByName('ingredients');
-        var all_restrictions = document.getElementsByName('filter');
         var ingredients = "";
-        var restrictions = "";
         var counter = 0;
 
         var ingTag = $('#tags').tagsinput('items');
@@ -216,20 +202,14 @@ function restrictions(temp)
             
           if(all_ingredients[i].selected == true)
           {
-            // console.log("i: ", all_ingredients[i].value);
             counter++;
             ingredients += all_ingredients[i].value + '%2C'
           }
         }
         for(var i = 0; i < ingTag.length; i++)
         {
-            // console.log("j: ", ingTag[i]);
             counter++;
             ingredients += ingTag[i] + '%2C'
-        }
-        for(var i = 0; i < all_restrictions.length; i++)
-        {
-            restrictions += all_restrictions[i].value 
         }
         for(var i = 0; i <all_ingredients.length; i++)
         {
@@ -247,7 +227,6 @@ function restrictions(temp)
         }
         ingredients = ingredients.slice(0,-3);
         console.log(ingredients);
-        // There will be a , in the end make sure you remove it
         base_url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=10&ranking=2&ignorePantry=false&ingredients=";
         url = base_url + ingredients;
         console.log(`url is : ${url}`);
@@ -259,23 +238,8 @@ function restrictions(temp)
                 response = JSON.parse(this.response); 
                 for(var i = 0; i < response.length; i++)
                 {
-                
-                    stuff(response[i]);
-                    // card += '<article class="card" style="width: 12rem"><div class="card__info-hover">';
-                    // card += '<div class="card__ingred-info"><span class="card__ingred"> Matching Ingredients: ' +  response[i]['usedIngredientCount'] + '</span>';
-                    // card += '<span class="card__ingred"> Missing Ingredients: ' +  response[i]['missedIngredientCount'] + '</span></div></div>';
-                    // card +=  '<div class="card__img" style="background-image: url(\''+ response[i]['image'] +'\')"></div>';
-                    // card += '<a href="#" id='+ response[i].id + ' class="card_link" data-toggle="modal" data-target="#exampleModal" onclick="displayMoreInfo(this)">';
-                    // card += '<div class="card__img--hover" style="background-image: url(\''+ response[i]['image'] +'\')">';
-                    // card += '</div></a>';
-                    // card += '<a href="#" id='+ response[i].id + ' class="card_link" data-toggle="modal" data-target="#exampleModal" onclick="displayMoreInfo(this)">';
-                    // card +=  '<div class="card__info"><h4 class="card__title">';
-                    // // card +=  '<img class="card-img-top src='+ response[i]['image'];
-                    // // card +=  '<h5 class="card-title">'; 
-                    // card +=  response[i]['title']; 
-                    // card +=  '</h4></div></a></article>';
-                    
-                   
+
+                    checkQuality(response[i],all_restrictions);
                     
                 }
             }
@@ -286,16 +250,26 @@ function restrictions(temp)
         xhttp.send();
         $(".loadRecp").fadeIn();
         setTimeout(showRecipes, 2000);
+        })
     }
 
     
     function showRecipes()
     {
-        $("#section-a").fadeOut();
-        $(".loadRecp").fadeOut();
-        $("#section-b").fadeIn();
-        window.location.hash = "section-b";
-        document.getElementById("client").value = "";
+        console.log(counterCards);
+        if (counterCards == 0){
+            alert("Sorry, we weren't able to find any recipes with the ingredients you entered. This may be due to any dietary restriction(s) you may have. Please try again with different ingredients.");
+            $(".loadRecp").fadeOut("fast");
+            resetSearch();
+        }
+        else
+        {
+            $("#section-a").fadeOut();
+            $(".loadRecp").fadeOut();
+            $("#section-b").fadeIn();
+            window.location.hash = "section-b";
+            document.getElementById("client").value = "";
+        }
     }
 
     function newsearch()
