@@ -35,37 +35,37 @@ function displaylist(listnum, items){
 }
 
 function restrictions(temp)
+{
+    document.getElementById('vegitarian').innerHTML = "";
+    document.getElementById('vegan').innerHTML = "";
+    document.getElementById('gluten').innerHTML = "";
+    if(temp.vegetarian == true)
     {
-        document.getElementById('vegitarian').innerHTML = "";
-        document.getElementById('vegan').innerHTML = "";
-        document.getElementById('gluten').innerHTML = "";
-        if(temp.vegetarian == true)
-        {
-            document.getElementById('vegitarian').innerHTML += '<p> Vegetarian: Yes</p>';
-    
-        }
-        else if(temp.vegetarian == false)
-        {
-            document.getElementById('vegitarian').innerHTML += '<p> Vegetarian: No</p>';
-        }
-        if(temp.vegan == true)
-        {
-            document.getElementById('vegan').innerHTML += '<p> Vegan: Yes</p>';
-        }
-        else if(temp.vegan == false)
-        {
-            document.getElementById('vegan').innerHTML += '<p> Vegan: No</p>';
-        }
-        if(temp.glutenFree == true)
-        {
-            document.getElementById('gluten').innerHTML += '<p> Gluten Free: Yes</p>';
-        }
-        else if(temp.glutenFree == false)
-        {
-            document.getElementById('gluten').innerHTML += '<p> Gluten Free: No</p>';
-        }
+        document.getElementById('vegitarian').innerHTML += '<p> Vegetarian: Yes</p>';
+
     }
-    
+    else if(temp.vegetarian == false)
+    {
+        document.getElementById('vegitarian').innerHTML += '<p> Vegetarian: No</p>';
+    }
+    if(temp.vegan == true)
+    {
+        document.getElementById('vegan').innerHTML += '<p> Vegan: Yes</p>';
+    }
+    else if(temp.vegan == false)
+    {
+        document.getElementById('vegan').innerHTML += '<p> Vegan: No</p>';
+    }
+    if(temp.glutenFree == true)
+    {
+        document.getElementById('gluten').innerHTML += '<p> Gluten Free: Yes</p>';
+    }
+    else if(temp.glutenFree == false)
+    {
+        document.getElementById('gluten').innerHTML += '<p> Gluten Free: No</p>';
+    }
+}
+
     function recipeList(element)
     {
         var list = document.getElementById("ingredientsList");
@@ -75,6 +75,7 @@ function restrictions(temp)
                 list.innerHTML += '<li>'+ element.extendedIngredients[i].name +'</li>'
             }
     }
+
     function displayMoreInfo(element) 
     {
         var xhttp = new XMLHttpRequest();
@@ -84,24 +85,36 @@ function restrictions(temp)
        
         url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+ id+ "/information"
         
+        document.getElementById('ModalLabel').innerHTML = "";
+        document.getElementById('picture').src = "";
+        document.getElementById('recipeSteps').innerHTML = "";
+        document.getElementById('recipeTime').innerHTML = "";
+        document.getElementById("ingredientsList").innerHTML = "";
         
 
         xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             
-            var json = JSON.parse(this.response);            
+            var json = JSON.parse(this.response);  
+            var recpImage = "";          
             
             document.getElementById('ModalLabel').innerHTML = json.title;
             console.log("TITLE: ", json.title);
-            document.getElementById('picture').src = json.image;
+            if (json.image == undefined || json.image.includes('https://spoonacular.com/recipeImages/627393') || json.image.includes('https://spoonacular.com/recipeImages/139394') || json.image.includes('https://spoonacular.com/recipeImages/698170') || json.image.includes('https://spoonacular.com/recipeImages/1079688') || json.image.includes('https://spoonacular.com/recipeImages/962037') || json.image.includes('https://spoonacular.com/recipeImages/968871'))
+            {
+                recpImage ='../resources/img/no_img_found_2.jpg';
+            }
+            else
+            {
+                recpImage = json.image;
+            }
+            document.getElementById('picture').src = recpImage;
             document.getElementById('recipeSteps').innerHTML = '<strong>Instructions:</strong><br><p>'+ json.instructions +'</p>';
             document.getElementById('recipeTime').innerHTML = '<strong>Cook Time:</strong><br><p>Meal ready in: '+ json.readyInMinutes +' minutes</p>';
             
             restrictions(json);
             recipeList(json);
-            
-            
-                        
+                  
         }
         }
         xhttp.open("GET", url,true);
@@ -151,12 +164,21 @@ function restrictions(temp)
         if(cardStyle == 'visible')
         {
             console.log("CARD TEST1: ", card);
+            var recpImg = ""
+            if (response['image'].includes('https://spoonacular.com/recipeImages/962537') || response['image'].includes('https://spoonacular.com/recipeImages/627393') || response['image'].includes('https://spoonacular.com/recipeImages/139394') || response['image'].includes('https://spoonacular.com/recipeImages/968871') || response['image'].includes('https://spoonacular.com/recipeImages/698170') || response['image'].includes('https://spoonacular.com/recipeImages/1079688') || response['image'].includes('https://spoonacular.com/recipeImages/962037'))
+            {
+                recpImg = '../resources/img/no_img_found_2.jpg';
+            }
+            else
+            {
+                recpImg = response['image'];
+            }
             card += '<div class="card" style="width: 13rem" align="center"><div class="card__info-hover">';
             card += '<div class="card__ingred-info"><span class="card__ingred"> Matching Ingredients: ' +  response['usedIngredientCount'] + '</span>';
             card += '<span class="card__ingred"> Missing Ingredients: ' +  response['missedIngredientCount'] + '</span></div></div>';
-            card +=  '<div class="card__img" style="background-image: url(\''+ response['image'] +'\')"></div>';
+            card +=  '<div class="card__img" style="background-image: url(\''+ recpImg +'\')"></div>';
             card += '<a href="#" id='+ response.id + ' class="card_link" data-toggle="modal" data-target="#exampleModal" onclick="displayMoreInfo(this)">';
-            card += '<div class="card__img--hover" style="background-image: url(\''+ response['image'] +'\')">';
+            card += '<div class="card__img--hover" style="background-image: url(\''+ recpImg +'\')">';
             card += '</div></a>';
             card += '<a href="#" id='+ response.id + ' class="card_link" data-toggle="modal" data-target="#exampleModal" onclick="displayMoreInfo(this)">';
             card +=  '<div class="card__info"><h4 class="card__title">';
@@ -268,7 +290,6 @@ function restrictions(temp)
             $(".loadRecp").fadeOut();
             $("#section-b").fadeIn();
             window.location.hash = "section-b";
-            document.getElementById("client").value = "";
         }
     }
 
