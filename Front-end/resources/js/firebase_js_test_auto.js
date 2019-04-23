@@ -8,6 +8,79 @@
 };
 firebase.initializeApp(config);*/
 
+
+function onLoad(){
+  console.log("Called onLoad");
+  var ref = firebase.database().ref("users");
+  var CurrentUser = firebase.auth().currentUser;
+  console.log(CurrentUser.uid);
+  // want to implement some code that waits for them to sign in. Possibly work with dylan
+  var uID = CurrentUser.uid;
+
+  ref.once("value").then( function(snapshot) {
+    var veget = snapshot.child(uID).child('veg').val();
+    var gf = snapshot.child(uID).child('gluten_free').val();
+    var vegan = snapshot.child(uID).child('vegan').val();
+    var pesca = snapshot.child(uID).child('pesc').val();
+    console.log("vegetarian: " + veget);
+    console.log("gluten free: " + gf);
+    console.log("vegan: " + vegan);
+    console.log("pes: "+pesca);
+
+    if (veget) {
+      document.getElementById("veget").checked = true;
+      document.getElementById("veget").value = "true";
+    }
+    if (gf){
+      document.getElementById("gf").checked = true;
+      document.getElementById("gf").value = "true";
+    }
+    if (vegan) {
+      document.getElementById("vegan").checked = true;
+      document.getElementById("vegan").value = "true";
+    }
+    if (pesca) {
+      document.getElementById("pesc").checked = true;
+      document.getElementById("pesc").value = "true";
+    }
+
+  }, function (error) {
+    console.log("Error: "+error.code);
+  });
+
+  /*var users = myFirebase.child('users');
+  //console.log(CurrentUser.uid);
+
+
+
+  //svar myUser = users.child(CurrentUser.uid);
+  var Veg = users.child(CurrentUser.veg);
+  console.log(Veg);
+
+  if(Veg){
+    document.getElementById("veget").checked = true;
+  }
+  else {
+    document.getElementById("veget").checked = false;
+  }
+
+  var Gluten_Free = users.child(CurrentUser.gluten_free);
+  if(Gluten_Free){
+    document.getElementById("gf").checked = true;
+  }
+
+  var Vegan = users.child(CurrentUser.vegan);
+  if(Vegan){
+    document.getElementById("vegan").checked = true;
+  }
+
+  var Pesc = users.child(CurrentUser.pesc);
+  if(Pesc){
+    document.getElementById("pesc").checked = true;
+  }*/
+
+}
+
 function onChecked(id){
   var check = document.getElementById(id).checked;
   console.log(id);
@@ -42,18 +115,24 @@ function submit(){
   $(".overlay").fadeIn("slow");
   $(".overlay").css("display", "block");
 
-  
+
   setTimeout(writeUserData, 500);
+
   //window.location.href = "../views/home.html";
 }
 
 
 function writeUserData() {
 
+
   var veg = document.getElementById('veget').value;
   var vegan = document.getElementById('vegan').value;
   var gluten_free = document.getElementById('gf').value;
   var pesc = document.getElementById('pesc').value;
+  console.log("vegetarian: " + veg);
+  console.log("gluten free: " + gluten_free);
+  console.log("vegan: " + vegan);
+  console.log("pesc: "+pesc);
 
   if (veg == "true") {
     veg = true;
@@ -69,6 +148,7 @@ function writeUserData() {
 
   if (pesc == "true") { pesc = true }
   else {pesc = false}
+
   var myFirebase = firebase.database().ref();
   var CurrentUser = firebase.auth().currentUser;
   var users = myFirebase.child('users');
