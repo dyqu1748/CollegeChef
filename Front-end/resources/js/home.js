@@ -1,71 +1,40 @@
-//Use for page loading later
-// $(document).ready(function(){
-//     $(document).ajaxStart(function(){
-//       $(".loadPage").fadeIn("slow");
-//       $(".loadPage").css("display", "block");
-//     });
-//     $(document).ajaxComplete(function(){
-//       $(".loadPage").fadeOut("slow");  
-//       $(".loadPage").css("display", "none");
-//     });
-// });
-var counterCards = 0;
+    // Used for checking if no recipe cards are created when user searches for recipes
+    var counterCards = 0;
 
+    // Display if recipe meets dietary restriction on the recipe modal
+    function restrictions(temp)
+    {
+        document.getElementById('vegitarian').innerHTML = "";
+        document.getElementById('vegan').innerHTML = "";
+        document.getElementById('gluten').innerHTML = "";
+        if(temp.vegetarian == true)
+        {
+            document.getElementById('vegitarian').innerHTML += '<p> Vegetarian: Yes</p>';
 
-function displaylist(listnum, items){
-	var checkList = document.getElementById(listnum);
-	var items = document.getElementById(items);
-	checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
-	if (items.classList.contains('visible')){
-		items.classList.remove('visible');
-		items.style.display = "none";
-	}
-            
-	else{
-		items.classList.add('visible');
-		items.style.display = "block";
-	}
-            
-            
-	}
+        }
+        else if(temp.vegetarian == false)
+        {
+            document.getElementById('vegitarian').innerHTML += '<p> Vegetarian: No</p>';
+        }
+        if(temp.vegan == true)
+        {
+            document.getElementById('vegan').innerHTML += '<p> Vegan: Yes</p>';
+        }
+        else if(temp.vegan == false)
+        {
+            document.getElementById('vegan').innerHTML += '<p> Vegan: No</p>';
+        }
+        if(temp.glutenFree == true)
+        {
+            document.getElementById('gluten').innerHTML += '<p> Gluten Free: Yes</p>';
+        }
+        else if(temp.glutenFree == false)
+        {
+            document.getElementById('gluten').innerHTML += '<p> Gluten Free: No</p>';
+        }
+    }
 
-	items.onblur = function(evt) {
-	items.classList.remove('visible');
-	}
-}
-
-function restrictions(temp)
-{
-    document.getElementById('vegitarian').innerHTML = "";
-    document.getElementById('vegan').innerHTML = "";
-    document.getElementById('gluten').innerHTML = "";
-    if(temp.vegetarian == true)
-    {
-        document.getElementById('vegitarian').innerHTML += '<p> Vegetarian: Yes</p>';
-
-    }
-    else if(temp.vegetarian == false)
-    {
-        document.getElementById('vegitarian').innerHTML += '<p> Vegetarian: No</p>';
-    }
-    if(temp.vegan == true)
-    {
-        document.getElementById('vegan').innerHTML += '<p> Vegan: Yes</p>';
-    }
-    else if(temp.vegan == false)
-    {
-        document.getElementById('vegan').innerHTML += '<p> Vegan: No</p>';
-    }
-    if(temp.glutenFree == true)
-    {
-        document.getElementById('gluten').innerHTML += '<p> Gluten Free: Yes</p>';
-    }
-    else if(temp.glutenFree == false)
-    {
-        document.getElementById('gluten').innerHTML += '<p> Gluten Free: No</p>';
-    }
-}
-
+    // Display ingredients of recipe
     function recipeList(element)
     {
         var list = document.getElementById("ingredientsList");
@@ -76,6 +45,7 @@ function restrictions(temp)
             }
     }
 
+    //Create modal containing the recipe and its instructions when user clicks on a recipe card
     function displayMoreInfo(element) 
     {
         var xhttp = new XMLHttpRequest();
@@ -122,6 +92,7 @@ function restrictions(temp)
         xhttp.send();
     }
 
+    // Filters out recipes that don't have instruction and recipes that don't meet the user's dietary restriction(s)
     function checkQuality(element, restrictions) 
     {   
         console.log("TEST1")
@@ -137,6 +108,7 @@ function restrictions(temp)
             var json = JSON.parse(this.response);            
             console.log("JSON: ", json);
             var cardStyle;
+            // Recipe instruction and dietary restriction check
             if(json.instructions == null || (restrictions[0] == true && json.vegetarian == false) || (restrictions[1] == true && json.glutenFree == false) || (restrictions[2] == true && json.vegan == false))
             {   
                 console.log("Not Valid Recipe");
@@ -157,6 +129,7 @@ function restrictions(temp)
         xhttp1.send();
     }
      
+    // Creates recipe cards
     function generateCards(response, style)
     {
         var cardStyle = style;
@@ -186,6 +159,7 @@ function restrictions(temp)
             card +=  '</h4></div></a></div>';
             console.log("CARD TEST2: ", card);  
             document.getElementById("recipes-location").innerHTML += card;   
+            // Last check to ensure recipe card was correctly created
             if(card == "undefined")
             {
                 card = "";
@@ -195,8 +169,9 @@ function restrictions(temp)
     }
 
 
-    function loadDoc() 
+    function recipeSearch() 
     {
+        //Reset cards and card counter every time a new search is made 
         document.getElementById("recipes-location").innerHTML = "";
         counterCards = 0;
 
@@ -215,33 +190,29 @@ function restrictions(temp)
         var xhttp = new XMLHttpRequest();
         var all_ingredients = document.getElementsByName('ingredients');
         var ingredients = "";
+        // Used for checking if user has no ingredients selected
         var counter = 0;
 
         var ingTag = $('#tags').tagsinput('items');
 
+        // Place all ingredients into string; increments counter for every ingredient added
         for(var i = 0; i <all_ingredients.length; i++)
-        {
-            
+        { 
           if(all_ingredients[i].selected == true)
           {
             counter++;
             ingredients += all_ingredients[i].value + '%2C'
           }
         }
+
+        // Place all ingredients into string; increments counter for every ingredient added
         for(var i = 0; i < ingTag.length; i++)
         {
             counter++;
             ingredients += ingTag[i] + '%2C'
         }
-        for(var i = 0; i <all_ingredients.length; i++)
-        {
-          if(all_ingredients[i].selected == true)
-          {
-            counter++;
-            ingredients += all_ingredients[i].value + '%2C'
-          }
-        }
 
+        // Check if user has at least 1 ingredient added
         if (counter == 0)
         {
             alert("Please select at least one ingredient to begin searching for recipes.");
@@ -260,7 +231,7 @@ function restrictions(temp)
                 response = JSON.parse(this.response); 
                 for(var i = 0; i < response.length; i++)
                 {
-
+                    // Card creation begins here, creation is handled in the functions above
                     checkQuality(response[i],all_restrictions);
                     
                 }
@@ -270,6 +241,7 @@ function restrictions(temp)
         xhttp.open("GET", url, true);
         xhttp.setRequestHeader("X-RapidAPI-Key", "601fdf014cmsh9774814f1ee4e3dp10ecadjsn1de8cb4425cc");
         xhttp.send();
+        // Loading animation
         $(".loadRecp").fadeIn();
         setTimeout(showRecipes, 2000);
         })
@@ -279,11 +251,13 @@ function restrictions(temp)
     function showRecipes()
     {
         console.log(counterCards);
+        // Check if no cards were created; resets search if so
         if (counterCards == 0){
             alert("Sorry, we weren't able to find any recipes with the ingredients you entered. This may be due to any dietary restriction(s) you may have. Please try again with different ingredients.");
             $(".loadRecp").fadeOut("fast");
             resetSearch();
         }
+        // Display created cards if search was successful
         else
         {
             $("#section-a").fadeOut();
@@ -293,6 +267,7 @@ function restrictions(temp)
         }
     }
 
+    // Brings back in dropdown menus and tag search bar for a new search
     function newsearch()
     {
         resetSearch();
@@ -301,6 +276,7 @@ function restrictions(temp)
         window.location.hash = "section-a";
     }
     
+    // Resets values of dropdown menus and tag search bar
     function resetSearch()
     {
         $("#tags").tagsinput('removeAll');

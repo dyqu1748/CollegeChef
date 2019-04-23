@@ -1,6 +1,6 @@
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    // User is signed in.
+    // User is signed in. Show appropiate elements for signed in user and vice-versa.
 
     document.getElementById("user_div").style.display = "block";
     document.getElementById("login_div").style.display = "none";
@@ -8,8 +8,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     var user = firebase.auth().currentUser;
 
     if(user != null){
-
-      var email_id = user.email;
+      // Change elements for signed in user.
+    var email_id = user.email;
     document.getElementById("user_para").innerHTML = "Welcome " + email_id;
 	  document.getElementById("home_para").innerHTML = "Welcome back to CollegeChef™. Click the button below to start cooking.";
 	  document.getElementById("home_btn").innerHTML = "Get Cooking";
@@ -19,7 +19,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 
   } else {
-    // No user is signed in.
+    // No user is signed in. Display appropriate elements.
 
     document.getElementById("user_div").style.display = "none";
     document.getElementById("login_div").style.display = "block";
@@ -48,6 +48,20 @@ function login(){
 
 }
 
+function resetPassword(){
+  var userEmail = document.getElementById("inputEmail").value;
+  firebase.auth().sendPasswordResetEmail(userEmail).then(function() {
+    // Email sent.
+    document.getElementById("user_div").style.display = "block";
+    document.getElementById("login_div").style.display = "none";
+  }).catch(function(error) {
+    // An error happened.
+    var errorMessage = error.message;
+	  
+	  window.alert("Error : " + errorMessage);
+  });
+}
+
 function create_account(){
 	var userEmail = document.getElementById("inputEmail").value;
 	var userPass = document.getElementById("inputPassword").value;
@@ -67,6 +81,7 @@ function create_account(){
 });
 }
 
+//Log user out and refresh page to diplay correct elements
 function logout(){
   firebase.auth().signOut();
   location.reload();

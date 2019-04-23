@@ -1,3 +1,4 @@
+// Verifies if user correctly entered in their password by comparing it with the confirm password value. If so, create new account.
 function newaccount() {
 	var pass1 = document.getElementById("inputPassword").value;
 	var pass2 = document.getElementById("inputConfirmPassword").value;

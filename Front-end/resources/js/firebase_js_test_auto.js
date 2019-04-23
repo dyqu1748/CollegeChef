@@ -1,20 +1,8 @@
-/*var config = {
-  apiKey: "AIzaSyBprXkeXD1HCJQZL4KtgmMaA3svUU7vcgI",
-  authDomain: "collegechef-1789f.firebaseapp.com",
-  databaseURL: "https://collegechef-1789f.firebaseio.com",
-  //projectId: "collegechef-1789f",
-  storageBucket: "collegechef-1789f.appspot.com",
-  //messagingSenderId: "231942064234"
-};
-firebase.initializeApp(config);*/
-
-
 function onLoad(){
   console.log("Called onLoad");
   var ref = firebase.database().ref("users");
   var CurrentUser = firebase.auth().currentUser;
   console.log(CurrentUser.uid);
-  // want to implement some code that waits for them to sign in. Possibly work with dylan
   var uID = CurrentUser.uid;
 
   ref.once("value").then( function(snapshot) {
@@ -27,6 +15,7 @@ function onLoad(){
     console.log("vegan: " + vegan);
     console.log("pes: "+pesca);
 
+    // Checks all of user's previously selected preferences on page load
     if (veget) {
       document.getElementById("veget").checked = true;
       document.getElementById("veget").value = "true";
@@ -47,40 +36,9 @@ function onLoad(){
   }, function (error) {
     console.log("Error: "+error.code);
   });
-
-  /*var users = myFirebase.child('users');
-  //console.log(CurrentUser.uid);
-
-
-
-  //svar myUser = users.child(CurrentUser.uid);
-  var Veg = users.child(CurrentUser.veg);
-  console.log(Veg);
-
-  if(Veg){
-    document.getElementById("veget").checked = true;
-  }
-  else {
-    document.getElementById("veget").checked = false;
-  }
-
-  var Gluten_Free = users.child(CurrentUser.gluten_free);
-  if(Gluten_Free){
-    document.getElementById("gf").checked = true;
-  }
-
-  var Vegan = users.child(CurrentUser.vegan);
-  if(Vegan){
-    document.getElementById("vegan").checked = true;
-  }
-
-  var Pesc = users.child(CurrentUser.pesc);
-  if(Pesc){
-    document.getElementById("pesc").checked = true;
-  }*/
-
 }
 
+// Sets values of preferences for submission 
 function onChecked(id){
   var check = document.getElementById(id).checked;
   console.log(id);
@@ -95,19 +53,8 @@ function onChecked(id){
 
 }
 
-//var veg = document.getElementById("veget");
-//veg.onchange() = onChecked();
-/*if(veg){
-  document.querySelector("input[name=vegetarian_option]").addEventListener('change', function(){
-    var value = document.getElementById("veget").checked;
-    console.log(value);
-  });
-}*/
-
+// Disables buttons upon submission, calls function to write users new preferences
 function submit(){
-  //document.getElementsByClassName('btn').disabled = true;
-  //document.getElementById('veget').style.background-color = "B9BEC5";
-  //alert("Thank you! Your preferences have been submitted!");
   document.getElementById('veget').disabled = true;
   document.getElementById('vegan').disabled = true;
   document.getElementById('gf').disabled = true;
@@ -117,14 +64,10 @@ function submit(){
 
 
   setTimeout(writeUserData, 500);
-
-  //window.location.href = "../views/home.html";
 }
 
-
+// Checks values of preferences, then sets user database values of current user to the new values set by user
 function writeUserData() {
-
-
   var veg = document.getElementById('veget').value;
   var vegan = document.getElementById('vegan').value;
   var gluten_free = document.getElementById('gf').value;
@@ -136,7 +79,6 @@ function writeUserData() {
 
   if (veg == "true") {
     veg = true;
-    //document.getElementById('veget').style.background-color = "B9BEC5";
   }
   else{veg = false}
 
@@ -177,20 +119,4 @@ function writeUserData() {
   }
 
   console.log("writeUserData finished")
-  //window.location.href = "../views/home.html";
 }
-
-//writeUserData("XMYKzifG7kMPk08tixxyqUaIFN83","quachdylan110@gmail.com","hello123",true, false, false, false);
-
-//writeUserData("XMYKzifG7kMPk08tixxyqUaIFN82","casa0779@colorado.edu","hello1234",false, false, true, true);
-
-/*var myFirebase = firebase.database().ref();
-var users = myFirebase.child("users");
-users.push( {
-  "email":"casa0779@colorado.edu",
-  "Password": "hello123",
-  "veg": true,
-  "vegan": false,
-  "gluten_free":false,
-  "pesc":false,
-});*/
