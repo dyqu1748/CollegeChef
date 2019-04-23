@@ -11,7 +11,9 @@
 
 </head>
 <body>
+  <!-- Overlay for when user has submitted their preferences  -->
   <div class="overlay" style="display: none"></div>
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 0.9">
     <a class="navbar-brand" href="home.html">
       <img src="../resources/img/chef.jpg" alt="placeholder logo" width="30" height="30">
@@ -23,6 +25,7 @@
   </nav>
 	</br>
 
+  <!-- Sign in card -->
   <div class="wrapper fade-in">
     <div class="container">
       <div class="row">
@@ -81,6 +84,7 @@
     </div>
   </div>
 
+  <!-- Footer with social icons -->
   <footer id="lab_social_icon_footer">
       <div class="container">
           <div class="text-center center-block">
@@ -91,7 +95,8 @@
       </div>
   </footer>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Start of scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
@@ -108,12 +113,12 @@
 			};
 		firebase.initializeApp(config);
   </script>
-
-    <script src="../resources/js/accounts.js"></script>
-    <script src="../resources/js/firebase_js_test_auto.js"></script>
-    <script>
-      setTimeout(onLoad,1000);
-    </script>
+  <script src="../resources/js/accounts.js"></script>
+  <script src="../resources/js/firebase_js_test_auto.js"></script>
+  <script>
+    setTimeout(onLoad,200);
+  </script>
+  <!-- End of scripts -->
 
 </body>
 
