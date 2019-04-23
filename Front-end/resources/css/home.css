@@ -5,6 +5,7 @@ html {
   box-sizing: border-box;
 }
 
+/* Nav bar form and btn styling */
 .navbar .btn {
   font-size: 70%;
   border-radius: 5rem;
@@ -49,6 +50,7 @@ body{
   margin:auto;
   text-align:center;
 }
+/* Video styling */
 .fullscreen-video-wrap{
   position: fixed;
   top:0;
@@ -146,7 +148,7 @@ body{
   background: rgb(72, 202, 72);
 }
 
-
+/* Loading animation for search */
 #loader-wrapper {
   position: relative;
   top: 0;
@@ -228,6 +230,7 @@ body{
       }
   }
 
+  /* Footer styling */
   #lab_social_icon_footer {
     padding: 40px 0;
     background-color: #dedede;
@@ -257,7 +260,7 @@ body{
   /*
       Multicoloured Hover Variations
   */
-  
+  /* Styling for footer btns */
   #lab_social_icon_footer #social-fb:hover {
     color: #2f55a4 ;
   }
@@ -275,7 +278,7 @@ body{
     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
   }
   
-
+/* Recipe card styling */
 .card__img {
   visibility: hidden;
     background-size: cover;
@@ -366,7 +369,7 @@ border-bottom-right-radius: 12px;
   margin-left: 5px;
 }
 
-/* Testing */
+/* Modal styling taken from materialdesign css */
 
 .modal-dialog.modal-notify .heading {
   margin: 0;
@@ -574,6 +577,7 @@ border-bottom-right-radius: 12px;
 .info-ic:hover, .info-ic:focus {
   color: #33b5e5; }
 
+/* Custom modal animation */
 .modal.fade{
   -webkit-transition:opacity .3s linear;
   -moz-transition:opacity .3s linear;

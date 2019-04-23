@@ -1,3 +1,4 @@
+/* Styling for the card and body of signup/register page */
 :root {
   --input-padding-x: 1.5rem;
   --input-padding-y: .75rem;
@@ -106,8 +107,10 @@ body {
   color: #777;
 }
 
+/* Footer styling */
+
 #lab_social_icon_footer {
-  position:absolute;
+  position: fixed;
   bottom:0;
   width:100%;
   padding: 40px;
@@ -159,6 +162,7 @@ body {
   background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
 }
 
+/* Animation for card fade in */
 .fade-in{
   animation: animationFrames ease 1s;
   animation-iteration-count: 1;
