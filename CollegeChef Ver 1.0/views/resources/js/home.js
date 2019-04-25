@@ -218,6 +218,11 @@
             alert("Please select at least one ingredient to begin searching for recipes.");
             return false;
         }
+        else if (counter >= 36)
+        {
+            alert("You have selected too many ingredients (the max amount allowed is 36 ingredients). Please remove some ingredients so that we can provide you with better recipe results.");
+            return false;
+        }
         ingredients = ingredients.slice(0,-3);
         console.log(ingredients);
         base_url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=10&ranking=2&ignorePantry=false&ingredients=";
