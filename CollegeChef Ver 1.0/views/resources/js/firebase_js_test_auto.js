@@ -107,7 +107,7 @@ function writeUserData() {
     })
     .then(function() {
       alert("Thank you! Your preferences have been submitted!");
-      window.location.href = "../views/index.html";
+      window.location.href = "../index.html";
     })
     .catch(function() {
       console.log("Data was not written");
